@@ -4,7 +4,7 @@
         <FrameworkVersion>9.0.4</FrameworkVersion>
         <ExtensionsVersion>9.0.4</ExtensionsVersion>
         <EntityFrameworkVersion>9.0.4</EntityFrameworkVersion>
-        <IdentityServerVersion>4.2.0</IdentityServerVersion>
+        <IdentityServerVersion>4.3.0</IdentityServerVersion>
     </PropertyGroup>
 
     <ItemGroup>
