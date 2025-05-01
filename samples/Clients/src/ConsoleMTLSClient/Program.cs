@@ -1,5 +1,5 @@
 ﻿using Clients;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityModel.Client;
 using Newtonsoft.Json.Linq;
 using System;
@@ -34,7 +34,7 @@ namespace ConsoleMTLSClient
                     .TryGetValue(OidcConstants.Discovery.MtlsEndpointAliases)
                     .Value<string>(OidcConstants.Discovery.TokenEndpoint)
                     .ToString();
-            
+
             var response = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
             {
                 Address = endpoint,
@@ -64,7 +64,7 @@ namespace ConsoleMTLSClient
         static SocketsHttpHandler GetHandler()
         {
             var handler = new SocketsHttpHandler();
-            
+
             var cert = new X509Certificate2("client.p12", "changeit");
             handler.SslOptions.ClientCertificates = new X509CertificateCollection { cert };
 

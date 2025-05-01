@@ -1,8 +1,8 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityModel;
+using Duende.IdentityModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +48,7 @@ namespace IdentityServer4.Models
         /// The audiences.
         /// </value>
         public ICollection<string> Audiences { get; set; } = new HashSet<string>();
-        
+
         /// <summary>
         /// Gets or sets the issuer.
         /// </summary>
@@ -56,7 +56,7 @@ namespace IdentityServer4.Models
         /// The issuer.
         /// </value>
         public string Issuer { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the creation time.
         /// </summary>
@@ -64,7 +64,7 @@ namespace IdentityServer4.Models
         /// The creation time.
         /// </value>
         public DateTime CreationTime { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the lifetime.
         /// </summary>
@@ -104,7 +104,7 @@ namespace IdentityServer4.Models
         /// The description.
         /// </value>
         public string Description { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the claims.
         /// </summary>

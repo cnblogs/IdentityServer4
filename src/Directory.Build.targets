@@ -23,29 +23,22 @@
 
         <!--our
         stuff -->
-        <PackageReference Update="IdentityModel" Version="6.0.0" />
+        <PackageReference Update="Duende.IdentityModel" Version="7.0.0" />
 
         <PackageReference Update="Cnblogs.IdentityServer4" Version="$(IdentityServerVersion)" />
-        <PackageReference Update="Cnblogs.IdentityServer4.AspNetIdentity"
-            Version="$(IdentityServerVersion)" />
-        <PackageReference Update="Cnblogs.IdentityServer4.Storage"
-            Version="$(IdentityServerVersion)" />
-        <PackageReference Update="Cnblogs.IdentityServer4.EntityFramework.Storage"
-            Version="$(IdentityServerVersion)" />
-        <PackageReference Update="Cnblogs.IdentityServer4.EntityFramework"
-            Version="$(IdentityServerVersion)" />
+        <PackageReference Update="Cnblogs.IdentityServer4.AspNetIdentity" Version="$(IdentityServerVersion)" />
+        <PackageReference Update="Cnblogs.IdentityServer4.Storage" Version="$(IdentityServerVersion)" />
+        <PackageReference Update="Cnblogs.IdentityServer4.EntityFramework.Storage" Version="$(IdentityServerVersion)" />
+        <PackageReference Update="Cnblogs.IdentityServer4.EntityFramework" Version="$(IdentityServerVersion)" />
 
         <!--microsoft
         extensions -->
-        <PackageReference Update="Microsoft.Extensions.Caching.Memory"
-            Version="$(ExtensionsVersion)" />
+        <PackageReference Update="Microsoft.Extensions.Caching.Memory" Version="$(ExtensionsVersion)" />
         <PackageReference Update="Microsoft.Extensions.Http" Version="$(ExtensionsVersion)" />
         <PackageReference Update="Microsoft.Extensions.Http.Polly" Version="$(ExtensionsVersion)" />
         <PackageReference Update="Microsoft.Extensions.Logging" Version="$(ExtensionsVersion)" />
-        <PackageReference Update="Microsoft.Extensions.Logging.Console"
-            Version="$(ExtensionsVersion)" />
-        <PackageReference Update="Microsoft.Extensions.Options.ConfigurationExtensions"
-            Version="$(ExtensionsVersion)" />
+        <PackageReference Update="Microsoft.Extensions.Logging.Console" Version="$(ExtensionsVersion)" />
+        <PackageReference Update="Microsoft.Extensions.Options.ConfigurationExtensions" Version="$(ExtensionsVersion)" />
 
         <!--misc -->
         <PackageReference Update="Newtonsoft.Json" Version="13.0.3" />
@@ -56,29 +49,20 @@
 
         <!--microsoft
         asp.net core -->
-        <PackageReference Update="Microsoft.AspNetCore.Authentication.OpenIdConnect"
-            Version="$(FrameworkVersion)" />
+        <PackageReference Update="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="$(FrameworkVersion)" />
         <PackageReference Update="Microsoft.AspNetCore.TestHost" Version="$(FrameworkVersion)" />
         <PackageReference Update="Microsoft.AspNetCore.Identity" Version="2.3.1" />
-        <PackageReference Update="Microsoft.AspNetCore.Identity.EntityFrameworkCore"
-            Version="$(FrameworkVersion)" />
-        <PackageReference Update="Microsoft.AspNetCore.Mvc.NewtonsoftJson"
-            Version="$(FrameworkVersion)" />
-        <PackageReference Update="Microsoft.AspNetCore.Authentication.Certificate"
-            Version="$(FrameworkVersion)" />
+        <PackageReference Update="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(FrameworkVersion)" />
+        <PackageReference Update="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="$(FrameworkVersion)" />
+        <PackageReference Update="Microsoft.AspNetCore.Authentication.Certificate" Version="$(FrameworkVersion)" />
 
         <!--microsoft
         entity framework -->
-        <PackageReference Update="Microsoft.EntityFrameworkCore.Relational"
-            Version="$(EntityFrameworkVersion)" />
-        <PackageReference Update="Microsoft.EntityFrameworkCore.Sqlite"
-            Version="$(EntityFrameworkVersion)" />
-        <PackageReference Update="Microsoft.EntityFrameworkCore.InMemory"
-            Version="$(EntityFrameworkVersion)" />
-        <PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer"
-            Version="$(EntityFrameworkVersion)" />
-        <PackageReference Update="Microsoft.EntityFrameworkCore.Design"
-            Version="$(EntityFrameworkVersion)" PrivateAssets="All" />
+        <PackageReference Update="Microsoft.EntityFrameworkCore.Relational" Version="$(EntityFrameworkVersion)" />
+        <PackageReference Update="Microsoft.EntityFrameworkCore.Sqlite" Version="$(EntityFrameworkVersion)" />
+        <PackageReference Update="Microsoft.EntityFrameworkCore.InMemory" Version="$(EntityFrameworkVersion)" />
+        <PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="$(EntityFrameworkVersion)" />
+        <PackageReference Update="Microsoft.EntityFrameworkCore.Design" Version="$(EntityFrameworkVersion)" PrivateAssets="All" />
 
     </ItemGroup>
 

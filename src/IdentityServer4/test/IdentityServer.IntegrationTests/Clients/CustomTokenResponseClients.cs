@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityModel.Client;
 using IdentityServer.IntegrationTests.Clients.Setup;
 using Microsoft.AspNetCore.Hosting;
@@ -53,7 +53,7 @@ namespace IdentityServer.IntegrationTests.Clients
             // raw fields
             var fields = GetFields(response);
             fields.Should().Contain("string_value", "some_string");
-            ((Int64) fields["int_value"]).Should().Be(42);
+            ((Int64)fields["int_value"]).Should().Be(42);
 
             object temp;
             fields.TryGetValue("identity_token", out temp).Should().BeFalse();
@@ -118,7 +118,7 @@ namespace IdentityServer.IntegrationTests.Clients
             // raw fields
             var fields = GetFields(response);
             fields.Should().Contain("string_value", "some_string");
-            ((Int64) fields["int_value"]).Should().Be(42);
+            ((Int64)fields["int_value"]).Should().Be(42);
 
             object temp;
             fields.TryGetValue("identity_token", out temp).Should().BeFalse();
@@ -172,7 +172,7 @@ namespace IdentityServer.IntegrationTests.Clients
             // raw fields
             var fields = GetFields(response);
             fields.Should().Contain("string_value", "some_string");
-            ((Int64) fields["int_value"]).Should().Be(42);
+            ((Int64)fields["int_value"]).Should().Be(42);
 
             object temp;
             fields.TryGetValue("identity_token", out temp).Should().BeFalse();
@@ -243,7 +243,7 @@ namespace IdentityServer.IntegrationTests.Clients
             // raw fields
             var fields = GetFields(response);
             fields.Should().Contain("string_value", "some_string");
-            ((Int64) fields["int_value"]).Should().Be(42);
+            ((Int64)fields["int_value"]).Should().Be(42);
 
             object temp;
             fields.TryGetValue("identity_token", out temp).Should().BeFalse();

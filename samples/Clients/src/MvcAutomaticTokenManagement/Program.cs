@@ -12,7 +12,7 @@ namespace MvcCode
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Warning()
-                .MinimumLevel.Override("IdentityModel", LogEventLevel.Debug)
+                .MinimumLevel.Override("Duende.IdentityModel", LogEventLevel.Debug)
                 .MinimumLevel.Override("System.Net.Http", LogEventLevel.Information)
                 .MinimumLevel.Override("Microsoft.AspNetCore.Authentication", LogEventLevel.Information)
                 .Enrich.FromLogContext()

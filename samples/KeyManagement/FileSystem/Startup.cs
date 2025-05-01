@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;
-using IdentityModel;
+using Duende.IdentityModel;
 using System.Linq;
 using System.IO;
 using Microsoft.Extensions.Configuration;
@@ -31,7 +31,7 @@ namespace sample
 
             services.AddDataProtection()
                 .PersistKeysToFileSystem(new DirectoryInfo(Path.Combine(Environment.ContentRootPath, "dataprotectionkeys")));
-                //.ProtectKeysWithCertificate(cert);
+            //.ProtectKeysWithCertificate(cert);
 
             var builder = services.AddIdentityServer()
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
@@ -60,12 +60,12 @@ namespace sample
                     .PersistKeysToFileSystem(Path.Combine(Environment.ContentRootPath, @"signingkeys"))
                     .ProtectKeysWithDataProtection();
 
-                    // .PersistKeysWith<TYourStore>() // use this when you implement your own ISigningKeyStore
-                    //.EnableInMemoryCaching() // caching disabled unless explicitly enabled
-                    // run "..\cert\cert.ps1" from a powershell prompt to create new cert/pfx
-                    // put the pfx created in the local machine store
-                    //.ProtectKeysWithX509Certificate("CN=SigningKeysMasterKey")
-                ;
+            // .PersistKeysWith<TYourStore>() // use this when you implement your own ISigningKeyStore
+            //.EnableInMemoryCaching() // caching disabled unless explicitly enabled
+            // run "..\cert\cert.ps1" from a powershell prompt to create new cert/pfx
+            // put the pfx created in the local machine store
+            //.ProtectKeysWithX509Certificate("CN=SigningKeysMasterKey")
+            ;
         }
 
         public void Configure(IApplicationBuilder app)

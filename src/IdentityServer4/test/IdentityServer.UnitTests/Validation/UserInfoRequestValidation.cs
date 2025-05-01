@@ -3,7 +3,7 @@
 
 
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Validation.Setup;
 using IdentityServer4.Stores;
 using IdentityServer4.Validation;

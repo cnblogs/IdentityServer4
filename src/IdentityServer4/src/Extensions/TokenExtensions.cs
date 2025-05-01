@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
@@ -125,7 +125,7 @@ namespace IdentityServer4.Extensions
                     var newArr = new List<JToken>();
                     foreach (var arrays in group)
                     {
-                        var arr = (JArray) arrays.JsonValue;
+                        var arr = (JArray)arrays.JsonValue;
                         newArr.AddRange(arr);
                     }
 

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Validation.Setup;
 using IdentityServer4;
 using IdentityServer4.Models;
@@ -231,10 +231,10 @@ namespace IdentityServer.UnitTests.Validation
             var request = new ValidatedTokenRequest();
             request.SetClient(client);
 
-            var context = new DeviceCodeValidationContext {DeviceCode = handle, Request = request};
+            var context = new DeviceCodeValidationContext { DeviceCode = handle, Request = request };
 
             await validator.ValidateAsync(context);
-            
+
             context.Result.IsError.Should().BeFalse();
         }
     }

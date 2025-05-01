@@ -1,5 +1,5 @@
 ﻿using Clients;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityModel.Client;
 using Newtonsoft.Json.Linq;
 using System;

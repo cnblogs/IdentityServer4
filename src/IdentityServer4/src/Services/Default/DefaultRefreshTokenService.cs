@@ -8,7 +8,7 @@ using IdentityServer4.Stores;
 using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Logging.Models;
 using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Authentication;
@@ -68,7 +68,8 @@ namespace IdentityServer4.Services
         {
             var invalidGrant = new TokenValidationResult
             {
-                IsError = true, Error = OidcConstants.TokenErrors.InvalidGrant
+                IsError = true,
+                Error = OidcConstants.TokenErrors.InvalidGrant
             };
 
             Logger.LogTrace("Start refresh token validation");
@@ -91,7 +92,7 @@ namespace IdentityServer4.Services
                 Logger.LogWarning("Refresh token has expired.");
                 return invalidGrant;
             }
-            
+
             /////////////////////////////////////////////
             // check if client belongs to requested refresh token
             /////////////////////////////////////////////
@@ -109,7 +110,7 @@ namespace IdentityServer4.Services
                 Logger.LogError("{clientId} does not have access to offline_access scope anymore", client.ClientId);
                 return invalidGrant;
             }
-            
+
             /////////////////////////////////////////////
             // check if refresh token has been consumed
             /////////////////////////////////////////////
@@ -121,7 +122,7 @@ namespace IdentityServer4.Services
                     return invalidGrant;
                 }
             }
-            
+
             /////////////////////////////////////////////
             // make sure user is enabled
             /////////////////////////////////////////////
@@ -137,11 +138,11 @@ namespace IdentityServer4.Services
                 Logger.LogError("{subjectId} has been disabled", refreshToken.Subject.GetSubjectId());
                 return invalidGrant;
             }
-            
+
             return new TokenValidationResult
             {
-                IsError = false, 
-                RefreshToken = refreshToken, 
+                IsError = false,
+                RefreshToken = refreshToken,
                 Client = client
             };
         }
@@ -198,7 +199,9 @@ namespace IdentityServer4.Services
 
             var refreshToken = new RefreshToken
             {
-                CreationTime = Clock.UtcNow.UtcDateTime, Lifetime = lifetime, AccessToken = accessToken
+                CreationTime = Clock.UtcNow.UtcDateTime,
+                Lifetime = lifetime,
+                AccessToken = accessToken
             };
 
             var handle = await RefreshTokenStore.StoreRefreshTokenAsync(refreshToken);

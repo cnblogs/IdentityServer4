@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
@@ -51,7 +51,7 @@ namespace IdentityServer4.ResponseHandling
         public AuthorizeInteractionResponseGenerator(
             ISystemClock clock,
             ILogger<AuthorizeInteractionResponseGenerator> logger,
-            IConsentService consent, 
+            IConsentService consent,
             IProfileService profile)
         {
             Clock = clock;
@@ -83,7 +83,7 @@ namespace IdentityServer4.ResponseHandling
                     AuthorizationError.LoginRequired => OidcConstants.AuthorizeErrors.LoginRequired,
                     _ => OidcConstants.AuthorizeErrors.AccessDenied
                 };
-                
+
                 return new InteractionResponse
                 {
                     Error = error,
@@ -92,7 +92,7 @@ namespace IdentityServer4.ResponseHandling
             }
 
             var result = await ProcessLoginAsync(request);
-            
+
             if (!result.IsLogin && !result.IsError && !result.IsRedirect)
             {
                 result = await ProcessConsentAsync(request, consent);
@@ -105,7 +105,7 @@ namespace IdentityServer4.ResponseHandling
                 result = new InteractionResponse
                 {
                     Error = result.IsLogin ? OidcConstants.AuthorizeErrors.LoginRequired :
-                                result.IsConsent ? OidcConstants.AuthorizeErrors.ConsentRequired : 
+                                result.IsConsent ? OidcConstants.AuthorizeErrors.ConsentRequired :
                                     OidcConstants.AuthorizeErrors.InteractionRequired
                 };
             }
@@ -128,13 +128,13 @@ namespace IdentityServer4.ResponseHandling
                 // remove prompt so when we redirect back in from login page
                 // we won't think we need to force a prompt again
                 request.RemovePrompt();
-                
+
                 return new InteractionResponse { IsLogin = true };
             }
 
             // unauthenticated user
             var isAuthenticated = request.Subject.IsAuthenticated();
-            
+
             // user de-activated
             bool isActive = false;
 
@@ -142,7 +142,7 @@ namespace IdentityServer4.ResponseHandling
             {
                 var isActiveCtx = new IsActiveContext(request.Subject, request.Client, IdentityServerConstants.ProfileIsActiveCallers.AuthorizeEndpoint);
                 await Profile.IsActiveAsync(isActiveCtx);
-                
+
                 isActive = isActiveCtx.IsActive;
             }
 
@@ -196,7 +196,7 @@ namespace IdentityServer4.ResponseHandling
                 }
             }
             // check external idp restrictions if user not using local idp
-            else if (request.Client.IdentityProviderRestrictions != null && 
+            else if (request.Client.IdentityProviderRestrictions != null &&
                 request.Client.IdentityProviderRestrictions.Any() &&
                 !request.Client.IdentityProviderRestrictions.Contains(currentIdp))
             {
@@ -284,7 +284,7 @@ namespace IdentityServer4.ResponseHandling
                             AuthorizationError.LoginRequired => OidcConstants.AuthorizeErrors.LoginRequired,
                             _ => OidcConstants.AuthorizeErrors.AccessDenied
                         };
-                        
+
                         response.Error = error;
                         response.ErrorDescription = consent.ErrorDescription;
                     }

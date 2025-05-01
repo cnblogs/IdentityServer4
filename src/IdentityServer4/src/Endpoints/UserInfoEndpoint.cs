@@ -8,7 +8,7 @@ using IdentityServer4.ResponseHandling;
 using Microsoft.Extensions.Logging;
 using IdentityServer4.Hosting;
 using IdentityServer4.Endpoints.Results;
-using IdentityModel;
+using Duende.IdentityModel;
 using Microsoft.AspNetCore.Http;
 using System.Net;
 
@@ -33,9 +33,9 @@ namespace IdentityServer4.Endpoints
         /// <param name="responseGenerator">The response generator.</param>
         /// <param name="logger">The logger.</param>
         public UserInfoEndpoint(
-            BearerTokenUsageValidator tokenUsageValidator, 
-            IUserInfoRequestValidator requestValidator, 
-            IUserInfoResponseGenerator responseGenerator, 
+            BearerTokenUsageValidator tokenUsageValidator,
+            IUserInfoRequestValidator requestValidator,
+            IUserInfoResponseGenerator responseGenerator,
             ILogger<UserInfoEndpoint> logger)
         {
             _tokenUsageValidator = tokenUsageValidator;

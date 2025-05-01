@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Configuration;
 using IdentityServer4.Events;
 using IdentityServer4.Extensions;
@@ -57,19 +57,19 @@ namespace IdentityServer4.Validation
         /// <param name="events">The events.</param>
         /// <param name="clock">The clock.</param>
         /// <param name="logger">The logger.</param>
-        public TokenRequestValidator(IdentityServerOptions options, 
-            IAuthorizationCodeStore authorizationCodeStore, 
-            IResourceOwnerPasswordValidator resourceOwnerValidator, 
-            IProfileService profile, 
-            IDeviceCodeValidator deviceCodeValidator, 
-            ExtensionGrantValidator extensionGrantValidator, 
+        public TokenRequestValidator(IdentityServerOptions options,
+            IAuthorizationCodeStore authorizationCodeStore,
+            IResourceOwnerPasswordValidator resourceOwnerValidator,
+            IProfileService profile,
+            IDeviceCodeValidator deviceCodeValidator,
+            ExtensionGrantValidator extensionGrantValidator,
             ICustomTokenRequestValidator customRequestValidator,
             IResourceValidator resourceValidator,
             IResourceStore resourceStore,
-            ITokenValidator tokenValidator, 
+            ITokenValidator tokenValidator,
             IRefreshTokenService refreshTokenService,
-            IEventService events, 
-            ISystemClock clock, 
+            IEventService events,
+            ISystemClock clock,
             ILogger<TokenRequestValidator> logger)
         {
             _logger = logger;
@@ -235,7 +235,7 @@ namespace IdentityServer4.Validation
                 LogError("Invalid authorization code", new { code });
                 return Invalid(OidcConstants.TokenErrors.InvalidGrant);
             }
-            
+
             /////////////////////////////////////////////
             // validate client binding
             /////////////////////////////////////////////
@@ -527,7 +527,7 @@ namespace IdentityServer4.Validation
 
             _logger.LogDebug("Validation of refresh token request success");
             // todo: more logging - similar to TokenValidator before
-            
+
             return Valid();
         }
 
@@ -711,7 +711,8 @@ namespace IdentityServer4.Validation
                 return false;
             }
 
-            var resourceValidationResult = await _resourceValidator.ValidateRequestedResourcesAsync(new ResourceValidationRequest { 
+            var resourceValidationResult = await _resourceValidator.ValidateRequestedResourcesAsync(new ResourceValidationRequest
+            {
                 Client = _validatedRequest.Client,
                 Scopes = requestedScopes
             });
@@ -732,7 +733,7 @@ namespace IdentityServer4.Validation
 
             _validatedRequest.RequestedScopes = requestedScopes;
             _validatedRequest.ValidatedResources = resourceValidationResult;
-            
+
             return true;
         }
 

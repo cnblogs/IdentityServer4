@@ -5,7 +5,7 @@
 using System.Collections.Specialized;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Common;
 using IdentityServer.UnitTests.Validation.Setup;
 using IdentityServer4.Models;
@@ -168,7 +168,7 @@ namespace IdentityServer.UnitTests.Validation.TokenRequest_Validation
             result.Error.Should().Be(OidcConstants.TokenErrors.InvalidGrant);
             result.ErrorDescription.Should().Be("invalid_username_or_password");
         }
-        
+
         [Fact]
         [Trait("Category", Category)]
         public async Task Missing_ResourceOwner_password_for_user_with_password_should_fail()

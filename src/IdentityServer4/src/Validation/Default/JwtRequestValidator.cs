@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Configuration;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
@@ -183,7 +183,7 @@ namespace IdentityServer4.Validation
 
             Handler.ValidateToken(jwtTokenString, tokenValidationParameters, out var token);
 
-            return Task.FromResult((JwtSecurityToken) token);
+            return Task.FromResult((JwtSecurityToken)token);
         }
 
         /// <summary>

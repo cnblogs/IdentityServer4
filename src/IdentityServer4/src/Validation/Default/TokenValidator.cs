@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
@@ -286,7 +286,7 @@ namespace IdentityServer4.Validation
 
                     }
                 }
-                
+
                 // if access token contains an ID, log it
                 var jwtId = id.FindFirst(JwtClaimTypes.JwtId);
                 if (jwtId != null)
@@ -307,7 +307,7 @@ namespace IdentityServer4.Validation
                 }
 
                 var claims = id.Claims.ToList();
-                
+
                 // check the scope format (array vs space delimited string)
                 var scopes = claims.Where(c => c.Type == JwtClaimTypes.Scope).ToArray();
                 if (scopes.Any())
@@ -317,7 +317,7 @@ namespace IdentityServer4.Validation
                         if (scope.Value.Contains(" "))
                         {
                             claims.Remove(scope);
-                            
+
                             var values = scope.Value.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                             foreach (var value in values)
                             {

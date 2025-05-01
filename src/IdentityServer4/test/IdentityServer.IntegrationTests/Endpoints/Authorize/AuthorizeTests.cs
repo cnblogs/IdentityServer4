@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityModel.Client;
 using IdentityServer.IntegrationTests.Common;
 using IdentityServer4;
@@ -151,7 +151,7 @@ namespace IdentityServer.IntegrationTests.Endpoints.Authorize
         {
             var response = await _mockPipeline.BrowserClient.GetAsync(IdentityServerPipeline.AuthorizeEndpoint);
 
-            ((int) response.StatusCode).Should().BeLessThan(500);
+            ((int)response.StatusCode).Should().BeLessThan(500);
         }
 
         [Fact]
@@ -171,7 +171,7 @@ namespace IdentityServer.IntegrationTests.Endpoints.Authorize
         }
 
         [Theory]
-        [InlineData((Type) null)]
+        [InlineData((Type)null)]
         [InlineData(typeof(QueryStringAuthorizationParametersMessageStore))]
         [InlineData(typeof(DistributedCacheAuthorizationParametersMessageStore))]
         [Trait("Category", Category)]
@@ -267,7 +267,7 @@ namespace IdentityServer.IntegrationTests.Endpoints.Authorize
         }
 
         [Theory]
-        [InlineData((Type) null)]
+        [InlineData((Type)null)]
         [InlineData(typeof(QueryStringAuthorizationParametersMessageStore))]
         [InlineData(typeof(DistributedCacheAuthorizationParametersMessageStore))]
         [Trait("Category", Category)]

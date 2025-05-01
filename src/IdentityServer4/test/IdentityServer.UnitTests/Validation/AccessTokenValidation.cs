@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Common;
 using IdentityServer.UnitTests.Validation.Setup;
 using IdentityServer4.Configuration;
@@ -129,7 +129,7 @@ namespace IdentityServer.UnitTests.Validation
             now = DateTime.UtcNow;
 
             var store = Factory.CreateReferenceTokenStore();
-            var validator = Factory.CreateTokenValidator(store, clock:_clock);
+            var validator = Factory.CreateTokenValidator(store, clock: _clock);
 
             var token = TokenFactory.CreateAccessToken(new Client { ClientId = "roclient" }, "valid", 2, "read", "write");
             token.CreationTime = now;
@@ -168,7 +168,7 @@ namespace IdentityServer.UnitTests.Validation
 
             result.IsError.Should().BeFalse();
         }
-        
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -177,7 +177,7 @@ namespace IdentityServer.UnitTests.Validation
         {
             var options = TestIdentityServerOptions.Create();
             options.EmitScopesAsSpaceDelimitedStringInJwt = flag;
-            
+
             var signer = Factory.CreateDefaultTokenCreator(options);
             var jwt = await signer.CreateTokenAsync(TokenFactory.CreateAccessToken(new Client { ClientId = "roclient" }, "valid", 600, "read", "write"));
 
@@ -194,7 +194,7 @@ namespace IdentityServer.UnitTests.Validation
             scopes[0].Should().Be("read");
             scopes[1].Should().Be("write");
         }
-        
+
         [Fact]
         [Trait("Category", Category)]
         public async Task JWT_Token_invalid_Issuer()
@@ -217,7 +217,7 @@ namespace IdentityServer.UnitTests.Validation
         {
             var signer = Factory.CreateDefaultTokenCreator();
             var jwt = await signer.CreateTokenAsync(TokenFactory.CreateAccessTokenLong(new Client { ClientId = "roclient" }, "valid", 600, 1000, "read", "write"));
-            
+
             var validator = Factory.CreateTokenValidator(null);
             var result = await validator.ValidateAccessTokenAsync(jwt);
 

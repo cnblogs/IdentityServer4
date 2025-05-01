@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityModel;
+using Duende.IdentityModel;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -181,7 +181,7 @@ namespace IdentityServer4.Validation
         /// The request object
         /// </value>
         public string RequestObject { get; set; }
-        
+
         /// <summary>
         /// Gets a value indicating whether an access token was requested.
         /// </summary>

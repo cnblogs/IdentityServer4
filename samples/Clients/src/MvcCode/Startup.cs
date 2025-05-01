@@ -1,5 +1,5 @@
 using Clients;
-using IdentityModel;
+using Duende.IdentityModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -18,7 +18,7 @@ namespace MvcCode
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
             services.AddControllersWithViews();
-            
+
             services.AddHttpClient();
 
             services.AddSingleton<IDiscoveryCache>(r =>

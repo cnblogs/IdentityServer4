@@ -8,7 +8,7 @@ using System.Collections.Specialized;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Common;
 using IdentityServer.UnitTests.Validation.Setup;
 using IdentityServer4;
@@ -363,7 +363,7 @@ namespace IdentityServer.UnitTests.Validation.TokenRequest_Validation
             // request second time
             validator = Factory.CreateTokenRequestValidator(
                 authorizationCodeStore: store);
-            
+
             result = await validator.ValidateRequestAsync(parameters, client.ToValidationResult());
 
             result.IsError.Should().BeTrue();

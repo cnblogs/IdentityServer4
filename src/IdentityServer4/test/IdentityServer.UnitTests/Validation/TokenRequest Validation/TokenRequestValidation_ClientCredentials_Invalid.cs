@@ -6,7 +6,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Validation.Setup;
 using IdentityServer4.Stores;
 using Xunit;
@@ -55,7 +55,7 @@ namespace IdentityServer.UnitTests.Validation.TokenRequest_Validation
             result.ValidatedRequest.ValidatedResources.Resources.ApiResources.First().Name.Should().Be("api");
 
             result.ValidatedRequest.ValidatedResources.Resources.ApiScopes.Count.Should().Be(2);
-            result.ValidatedRequest.ValidatedResources.Resources.ApiScopes.Select(x=>x.Name).Should().BeEquivalentTo(new[] { "resource", "resource2" });
+            result.ValidatedRequest.ValidatedResources.Resources.ApiScopes.Select(x => x.Name).Should().BeEquivalentTo(new[] { "resource", "resource2" });
         }
 
         [Fact]
@@ -64,7 +64,7 @@ namespace IdentityServer.UnitTests.Validation.TokenRequest_Validation
         {
             var client = await _clients.FindEnabledClientByIdAsync("client");
             var validator = Factory.CreateTokenRequestValidator();
-            
+
             var parameters = new NameValueCollection();
             parameters.Add(OidcConstants.TokenRequest.GrantType, OidcConstants.GrantTypes.ClientCredentials);
             parameters.Add(OidcConstants.TokenRequest.Scope, "unknown");

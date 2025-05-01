@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityModel.Client;
 using IdentityServer.IntegrationTests.Clients.Setup;
 using Microsoft.AspNetCore.Hosting;
@@ -108,7 +108,7 @@ namespace IdentityServer.IntegrationTests.Clients
             payload.Keys.Should().Contain("jti");
             payload.Keys.Should().Contain("iat");
 
-            var audiences = ((JArray) payload["aud"]).Select(x => x.ToString());
+            var audiences = ((JArray)payload["aud"]).Select(x => x.ToString());
             audiences.Count().Should().Be(2);
             audiences.Should().Contain("api");
             audiences.Should().Contain("other_api");
@@ -208,12 +208,12 @@ namespace IdentityServer.IntegrationTests.Clients
             payload.Keys.Should().Contain("jti");
             payload.Keys.Should().Contain("iat");
 
-            var audiences = ((JArray) payload["aud"]).Select(x => x.ToString());
+            var audiences = ((JArray)payload["aud"]).Select(x => x.ToString());
             audiences.Count().Should().Be(2);
             audiences.Should().Contain("api");
             audiences.Should().Contain("other_api");
 
-            var scopes = ((JArray) payload["scope"]).Select(x => x.ToString());
+            var scopes = ((JArray)payload["scope"]).Select(x => x.ToString());
             scopes.Count().Should().Be(3);
             scopes.Should().Contain("api1");
             scopes.Should().Contain("api2");

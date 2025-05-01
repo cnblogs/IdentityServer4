@@ -6,7 +6,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Validation.Setup;
 using IdentityServer4;
 using Xunit;
@@ -185,7 +185,7 @@ namespace IdentityServer.UnitTests.Validation.AuthorizeRequest_Validation
 
             result.ValidatedRequest.SessionId.Should().NotBeNull();
         }
-        
+
         [Fact]
         [Trait("Category", Category)]
         public async Task multiple_prompt_values_should_be_accepted()

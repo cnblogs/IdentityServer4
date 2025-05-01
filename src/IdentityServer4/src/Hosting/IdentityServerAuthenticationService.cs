@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using IdentityServer4.Configuration.DependencyInjection;
 using IdentityServer4.Extensions;
 using System;
-using IdentityModel;
+using Duende.IdentityModel;
 using System.Linq;
 using IdentityServer4.Configuration;
 
@@ -44,7 +44,7 @@ namespace IdentityServer4.Hosting
             ILogger<IdentityServerAuthenticationService> logger)
         {
             _inner = decorator.Instance;
-            
+
             _schemes = schemes;
             _clock = clock;
             _session = session;

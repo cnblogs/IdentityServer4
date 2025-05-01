@@ -11,7 +11,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityModel.Client;
 using IdentityServer.IntegrationTests.Clients.Setup;
 using Microsoft.AspNetCore.Hosting;
@@ -164,7 +164,7 @@ namespace IdentityServer.IntegrationTests.Clients
             var refreshResponse = await _client.RequestRefreshTokenAsync(new RefreshTokenRequest
             {
                 Address = TokenEndpoint,
-                
+
                 ClientId = "client.custom",
                 ClientSecret = "secret",
 

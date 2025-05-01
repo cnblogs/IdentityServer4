@@ -8,7 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityModel.Client;
 using IdentityServer.IntegrationTests.Common;
 using IdentityServer4;
@@ -280,7 +280,7 @@ namespace IdentityServer.IntegrationTests.Conformance.Pkce
 
             authorizeResponse.Should().BeNull();
         }
-        
+
         [Fact]
         [Trait("Category", Category)]
         public async Task Code_verifier_should_not_be_accepted_if_no_code_challenge_was_used()
@@ -329,7 +329,7 @@ namespace IdentityServer.IntegrationTests.Conformance.Pkce
                 IdentityServerConstants.StandardScopes.OpenId,
                 redirect_uri,
                 nonce: nonce,
-                codeChallenge:"a");
+                codeChallenge: "a");
 
             _pipeline.ErrorWasCalled.Should().BeTrue();
             _pipeline.ErrorMessage.Error.Should().Be(OidcConstants.AuthorizeErrors.InvalidRequest);

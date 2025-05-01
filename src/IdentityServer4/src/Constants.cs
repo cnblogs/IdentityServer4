@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Models;
 using System;
 using System.Collections.Generic;
@@ -11,16 +11,16 @@ namespace IdentityServer4
 {
     internal static class Constants
     {
-        public const string IdentityServerName               = "IdentityServer4";
+        public const string IdentityServerName = "IdentityServer4";
         public const string IdentityServerAuthenticationType = IdentityServerName;
-        public const string ExternalAuthenticationMethod     = "external";
-        public const string DefaultHashAlgorithm             = "SHA256";
+        public const string ExternalAuthenticationMethod = "external";
+        public const string DefaultHashAlgorithm = "SHA256";
 
         public static readonly TimeSpan DefaultCookieTimeSpan = TimeSpan.FromHours(10);
-        public static readonly TimeSpan DefaultCacheDuration  = TimeSpan.FromMinutes(60);
+        public static readonly TimeSpan DefaultCacheDuration = TimeSpan.FromMinutes(60);
 
-        public static readonly List<string> SupportedResponseTypes = new List<string> 
-        { 
+        public static readonly List<string> SupportedResponseTypes = new List<string>
+        {
             OidcConstants.ResponseTypes.Code,
             OidcConstants.ResponseTypes.Token,
             OidcConstants.ResponseTypes.IdToken,
@@ -56,8 +56,8 @@ namespace IdentityServer4
 
         public enum ScopeRequirement
         {
-            None, 
-            ResourceOnly, 
+            None,
+            ResourceOnly,
             IdentityOnly,
             Identity
         }
@@ -72,7 +72,7 @@ namespace IdentityServer4
             { OidcConstants.ResponseTypes.CodeToken, ScopeRequirement.Identity },
             { OidcConstants.ResponseTypes.CodeIdTokenToken, ScopeRequirement.Identity }
         };
-                            
+
         public static readonly Dictionary<string, IEnumerable<string>> AllowedResponseModesForGrantType = new Dictionary<string, IEnumerable<string>>
         {
             { GrantType.AuthorizationCode, new[] { OidcConstants.ResponseModes.Query, OidcConstants.ResponseModes.FormPost, OidcConstants.ResponseModes.Fragment } },
@@ -128,11 +128,11 @@ namespace IdentityServer4
             { OidcConstants.ProtectedResourceErrors.InvalidRequest,    400 },
             { OidcConstants.ProtectedResourceErrors.InsufficientScope, 403 }
         };
-        
+
         public static readonly Dictionary<string, IEnumerable<string>> ScopeToClaimsMapping = new Dictionary<string, IEnumerable<string>>
         {
             { IdentityServerConstants.StandardScopes.Profile, new[]
-                            { 
+                            {
                                 JwtClaimTypes.Name,
                                 JwtClaimTypes.FamilyName,
                                 JwtClaimTypes.GivenName,
@@ -146,12 +146,12 @@ namespace IdentityServer4
                                 JwtClaimTypes.BirthDate,
                                 JwtClaimTypes.ZoneInfo,
                                 JwtClaimTypes.Locale,
-                                JwtClaimTypes.UpdatedAt 
+                                JwtClaimTypes.UpdatedAt
                             }},
             { IdentityServerConstants.StandardScopes.Email, new[]
-                            { 
+                            {
                                 JwtClaimTypes.Email,
-                                JwtClaimTypes.EmailVerified 
+                                JwtClaimTypes.EmailVerified
                             }},
             { IdentityServerConstants.StandardScopes.Address, new[]
                             {
@@ -209,25 +209,25 @@ namespace IdentityServer4
 
         public static class ProtocolRoutePaths
         {
-            public const string ConnectPathPrefix       = "connect";
+            public const string ConnectPathPrefix = "connect";
 
-            public const string Authorize               = ConnectPathPrefix + "/authorize";
-            public const string AuthorizeCallback       = Authorize + "/callback";
-            public const string DiscoveryConfiguration  = ".well-known/openid-configuration";
-            public const string DiscoveryWebKeys        = DiscoveryConfiguration + "/jwks";
-            public const string Token                   = ConnectPathPrefix + "/token";
-            public const string Revocation              = ConnectPathPrefix + "/revocation";
-            public const string UserInfo                = ConnectPathPrefix + "/userinfo";
-            public const string Introspection           = ConnectPathPrefix + "/introspect";
-            public const string EndSession              = ConnectPathPrefix + "/endsession";
-            public const string EndSessionCallback      = EndSession + "/callback";
-            public const string CheckSession            = ConnectPathPrefix + "/checksession";
-            public const string DeviceAuthorization     = ConnectPathPrefix + "/deviceauthorization";
+            public const string Authorize = ConnectPathPrefix + "/authorize";
+            public const string AuthorizeCallback = Authorize + "/callback";
+            public const string DiscoveryConfiguration = ".well-known/openid-configuration";
+            public const string DiscoveryWebKeys = DiscoveryConfiguration + "/jwks";
+            public const string Token = ConnectPathPrefix + "/token";
+            public const string Revocation = ConnectPathPrefix + "/revocation";
+            public const string UserInfo = ConnectPathPrefix + "/userinfo";
+            public const string Introspection = ConnectPathPrefix + "/introspect";
+            public const string EndSession = ConnectPathPrefix + "/endsession";
+            public const string EndSessionCallback = EndSession + "/callback";
+            public const string CheckSession = ConnectPathPrefix + "/checksession";
+            public const string DeviceAuthorization = ConnectPathPrefix + "/deviceauthorization";
 
-            public const string MtlsPathPrefix          = ConnectPathPrefix + "/mtls";
-            public const string MtlsToken               = MtlsPathPrefix + "/token";
-            public const string MtlsRevocation          = MtlsPathPrefix + "/revocation";
-            public const string MtlsIntrospection       = MtlsPathPrefix + "/introspect";
+            public const string MtlsPathPrefix = ConnectPathPrefix + "/mtls";
+            public const string MtlsToken = MtlsPathPrefix + "/token";
+            public const string MtlsRevocation = MtlsPathPrefix + "/revocation";
+            public const string MtlsIntrospection = MtlsPathPrefix + "/introspect";
             public const string MtlsDeviceAuthorization = MtlsPathPrefix + "/deviceauthorization";
 
             public static readonly string[] CorsPaths =
@@ -251,7 +251,7 @@ namespace IdentityServer4
         public static class TokenTypeHints
         {
             public const string RefreshToken = "refresh_token";
-            public const string AccessToken  = "access_token";
+            public const string AccessToken = "access_token";
         }
 
         public static List<string> SupportedTokenTypeHints = new List<string>

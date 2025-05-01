@@ -7,7 +7,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Common;
 using IdentityServer4;
 using IdentityServer4.Extensions;
@@ -70,7 +70,7 @@ namespace IdentityServer.UnitTests.Services.Default
         {
             _client.AllowRememberConsent = false;
 
-            await _subject.UpdateConsentAsync(_user, _client, new [] { new ParsedScopeValue("scope1"), new ParsedScopeValue("scope2") });
+            await _subject.UpdateConsentAsync(_user, _client, new[] { new ParsedScopeValue("scope1"), new ParsedScopeValue("scope2") });
 
             var consent = await _userConsentStore.GetUserConsentAsync(_user.GetSubjectId(), _client.ClientId);
             consent.Should().BeNull();
@@ -157,7 +157,7 @@ namespace IdentityServer.UnitTests.Services.Default
         {
             await _subject.UpdateConsentAsync(_user, _client, new[] { new ParsedScopeValue("scope1"), new ParsedScopeValue("scope2"), new ParsedScopeValue("scope3") });
 
-            var result = await _subject.RequiresConsentAsync(_user, _client, new [] { new ParsedScopeValue("scope2") });
+            var result = await _subject.RequiresConsentAsync(_user, _client, new[] { new ParsedScopeValue("scope2") });
 
             result.Should().BeFalse();
         }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using Microsoft.Extensions.Caching.Distributed;
@@ -27,7 +27,7 @@ namespace IdentityServer4.Stores.Default
         }
 
         private string CacheKeyPrefix => "DistributedCacheAuthorizationParametersMessageStore";
-        
+
         /// <inheritdoc/>
         public async Task<string> WriteAsync(Message<IDictionary<string, string[]>> message)
         {
@@ -39,7 +39,7 @@ namespace IdentityServer4.Stores.Default
 
             var key = await _handleGenerationService.GenerateAsync();
             var cacheKey = $"{CacheKeyPrefix}-{key}";
-            
+
             var json = ObjectSerializer.ToString(message);
 
             var options = new DistributedCacheEntryOptions();

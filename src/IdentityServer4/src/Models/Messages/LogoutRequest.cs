@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Extensions;
 using IdentityServer4.Validation;
 using System.Collections.Generic;
@@ -77,7 +77,7 @@ namespace IdentityServer4.Models
         /// Gets or sets the subject identifier for the user at logout time.
         /// </summary>
         public string SubjectId { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the session identifier for the user at logout time.
         /// </summary>

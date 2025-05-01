@@ -8,7 +8,7 @@ using IdentityServer4.Models;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using System.Linq;
-using IdentityModel;
+using Duende.IdentityModel;
 using Microsoft.AspNetCore.Http;
 
 namespace IdentityServer4.Validation

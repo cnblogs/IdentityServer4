@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.IntegrationTests.Common;
 using IdentityServer4.Models;
 using Newtonsoft.Json;
@@ -25,9 +25,9 @@ namespace IdentityServer.IntegrationTests.Endpoints.DeviceAuthorization
             _mockPipeline.Clients.Add(new Client
             {
                 ClientId = "client1",
-                ClientSecrets = {new Secret("secret".Sha256())},
+                ClientSecrets = { new Secret("secret".Sha256()) },
                 AllowedGrantTypes = GrantTypes.DeviceFlow,
-                AllowedScopes = {"openid"}
+                AllowedScopes = { "openid" }
             });
 
             _mockPipeline.IdentityScopes.AddRange(new IdentityResource[] {
@@ -115,7 +115,7 @@ namespace IdentityServer.IntegrationTests.Endpoints.DeviceAuthorization
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             response.Content.Headers.ContentType.MediaType.Should().Be("application/json");
-            
+
             var resultDto = ParseJsonBody<ResultDto>(await response.Content.ReadAsStreamAsync());
 
             resultDto.Should().NotBeNull();
