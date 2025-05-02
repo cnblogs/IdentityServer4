@@ -1,11 +1,11 @@
 <Project>
 
     <PropertyGroup>
-        <AspNetVersion>3.1.0</AspNetVersion>
+        <AspNetVersion>9.0.4</AspNetVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Update="Duende.IdentityModel" Version="4.3.0" />
+        <PackageReference Update="Duende.IdentityModel" Version="7.0.0" />
 
         <PackageReference Update="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="$(AspNetVersion)" />
         <PackageReference Update="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="$(AspNetVersion)" />
