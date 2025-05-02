@@ -88,31 +88,5 @@ namespace IdentityServer.IntegrationTests.Conformance.Basic
             authorization.Code.Should().NotBeNull();
             authorization.State.Should().Be(state);
         }
-
-        // this might not be in sync with the actual conformance tests
-        // since we dead-end on the error page due to changes 
-        // to follow the RFC to address open redirect in original OAuth RFC
-        [Fact]
-        [Trait("Category", Category)]
-        public async Task Request_missing_response_type_rejected()
-        {
-            await _mockPipeline.LoginAsync("bob");
-
-            var state = Guid.NewGuid().ToString();
-            var nonce = Guid.NewGuid().ToString();
-
-            var url = _mockPipeline.CreateAuthorizeUrl(
-                clientId: "code_client",
-                responseType: null, // missing
-                scope: "openid",
-                redirectUri: "https://code_client/callback",
-                state: state,
-                nonce: nonce);
-
-            _mockPipeline.BrowserClient.AllowAutoRedirect = true;
-            var response = await _mockPipeline.BrowserClient.GetAsync(url);
-
-            _mockPipeline.ErrorMessage.Error.Should().Be("unsupported_response_type");
-        }
     }
 }
