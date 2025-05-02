@@ -2,14 +2,14 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Threading.Tasks;
+using Duende.IdentityModel.Client;
 using FluentAssertions;
-using IdentityModel.Client;
 using IdentityServer.IntegrationTests.Common;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace IdentityServer.IntegrationTests.Pipeline
@@ -53,7 +53,7 @@ namespace IdentityServer.IntegrationTests.Pipeline
                 new IdentityResources.Profile(),
                 new IdentityResources.Email()
             });
-            
+
             _mockPipeline.Initialize("/subpath");
         }
 

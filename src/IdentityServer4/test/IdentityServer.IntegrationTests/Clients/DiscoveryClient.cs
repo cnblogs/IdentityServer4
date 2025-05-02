@@ -2,14 +2,14 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using Duende.IdentityModel.Client;
 using FluentAssertions;
-using IdentityModel.Client;
+using IdentityServer.IntegrationTests.Clients.Setup;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using IdentityServer.IntegrationTests.Clients.Setup;
 using Xunit;
 
 namespace IdentityServer.IntegrationTests.Clients

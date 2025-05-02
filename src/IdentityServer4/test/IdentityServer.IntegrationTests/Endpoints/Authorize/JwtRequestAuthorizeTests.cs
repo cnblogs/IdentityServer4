@@ -2,17 +2,9 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Security.Claims;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
-using FluentAssertions;
 using Duende.IdentityModel;
-using IdentityModel.Client;
+using Duende.IdentityModel.Client;
+using FluentAssertions;
 using IdentityServer.IntegrationTests.Common;
 using IdentityServer4;
 using IdentityServer4.Configuration;
@@ -21,6 +13,14 @@ using IdentityServer4.Test;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace IdentityServer.IntegrationTests.Endpoints.Authorize
@@ -29,7 +29,7 @@ namespace IdentityServer.IntegrationTests.Endpoints.Authorize
     {
         private const string Category = "Authorize endpoint with JWT requests";
 
-        private readonly IdentityServerPipeline _mockPipeline = new IdentityServerPipeline();
+        private readonly IdentityServerPipeline _mockPipeline = new();
         private readonly Client _client;
 
         private readonly string _symmetricJwk = @"{ 'kty': 'oct', 'use': 'sig', 'kid': '1', 'k': 'nYA-IFt8xTsdBHe9hunvizcp3Dt7f6qGqudq18kZHNtvqEGjJ9Ud-9x3kbQ-LYfLHS3xM2MpFQFg1JzT_0U_F8DI40oby4TvBDGszP664UgA8_5GjB7Flnrlsap1NlitvNpgQX3lpyTvC2zVuQ-UVsXbBDAaSBUSlnw7SE4LM8Ye2WYZrdCCXL8yAX9vIR7vf77yvNTEcBCI6y4JlvZaqMB4YKVSfygs8XqGGCHjLpE5bvI-A4ESbAUX26cVFvCeDg9pR6HK7BmwPMlO96krgtKZcXEJtUELYPys6-rbwAIdmxJxKxpgRpt0FRv_9fm6YPwG7QivYBX-vRwaodL1TA', 'alg': 'HS256'}";

@@ -2,8 +2,8 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using Duende.IdentityModel.Client;
 using FluentAssertions;
-using IdentityModel.Client;
 using IdentityServer.IntegrationTests.Common;
 using IdentityServer4;
 using IdentityServer4.Configuration;

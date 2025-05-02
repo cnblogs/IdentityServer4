@@ -2,21 +2,20 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using FluentAssertions;
 using Duende.IdentityModel;
-using IdentityModel.Client;
+using Duende.IdentityModel.Client;
+using FluentAssertions;
 using IdentityServer.IntegrationTests.Clients.Setup;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace IdentityServer.IntegrationTests.Clients
@@ -53,7 +52,7 @@ namespace IdentityServer.IntegrationTests.Clients
             // raw fields
             var fields = GetFields(response);
             fields.Should().Contain("string_value", "some_string");
-            ((Int64)fields["int_value"]).Should().Be(42);
+            ((Int64) fields["int_value"]).Should().Be(42);
 
             object temp;
             fields.TryGetValue("identity_token", out temp).Should().BeFalse();
@@ -118,7 +117,7 @@ namespace IdentityServer.IntegrationTests.Clients
             // raw fields
             var fields = GetFields(response);
             fields.Should().Contain("string_value", "some_string");
-            ((Int64)fields["int_value"]).Should().Be(42);
+            ((Int64) fields["int_value"]).Should().Be(42);
 
             object temp;
             fields.TryGetValue("identity_token", out temp).Should().BeFalse();
@@ -172,7 +171,7 @@ namespace IdentityServer.IntegrationTests.Clients
             // raw fields
             var fields = GetFields(response);
             fields.Should().Contain("string_value", "some_string");
-            ((Int64)fields["int_value"]).Should().Be(42);
+            ((Int64) fields["int_value"]).Should().Be(42);
 
             object temp;
             fields.TryGetValue("identity_token", out temp).Should().BeFalse();
@@ -243,7 +242,7 @@ namespace IdentityServer.IntegrationTests.Clients
             // raw fields
             var fields = GetFields(response);
             fields.Should().Contain("string_value", "some_string");
-            ((Int64)fields["int_value"]).Should().Be(42);
+            ((Int64) fields["int_value"]).Should().Be(42);
 
             object temp;
             fields.TryGetValue("identity_token", out temp).Should().BeFalse();

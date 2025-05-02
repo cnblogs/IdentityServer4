@@ -1,16 +1,17 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using Duende.IdentityModel.Client;
+using FluentAssertions;
+using IdentityServer.IntegrationTests.Common;
+using IdentityServer4.Models;
+using IdentityServer4.Test;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using FluentAssertions;
-using IdentityServer.IntegrationTests.Common;
-using IdentityServer4.Models;
-using IdentityServer4.Test;
 using Xunit;
 
 namespace IdentityServer.IntegrationTests.Conformance.Basic
@@ -82,7 +83,7 @@ namespace IdentityServer.IntegrationTests.Conformance.Basic
             var response = await _mockPipeline.BrowserClient.GetAsync(url);
             response.StatusCode.Should().Be(HttpStatusCode.Found);
 
-            var authorization = new IdentityModel.Client.AuthorizeResponse(response.Headers.Location.ToString());
+            var authorization = new AuthorizeResponse(response.Headers.Location.ToString());
             authorization.IsError.Should().BeFalse();
             authorization.Code.Should().NotBeNull();
             authorization.State.Should().Be(state);
