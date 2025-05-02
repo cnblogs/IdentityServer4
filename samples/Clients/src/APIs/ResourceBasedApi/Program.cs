@@ -1,9 +1,9 @@
-﻿using System;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
+using System;
 
 namespace ResourceBasedApi
 {
@@ -13,10 +13,10 @@ namespace ResourceBasedApi
         {
             Console.Title = "Sample API";
 
-            BuildWebHost(args).Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args)
+        public static IHostBuilder CreateHostBuilder(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
@@ -27,10 +27,12 @@ namespace ResourceBasedApi
                 .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}", theme: AnsiConsoleTheme.Code)
                 .CreateLogger();
 
-            return WebHost.CreateDefaultBuilder(args)
-                    .UseStartup<Startup>()
-                    .UseSerilog()
-                    .Build();
+            return Host.CreateDefaultBuilder(args)
+                .UseSerilog()
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
         }
     }
 }

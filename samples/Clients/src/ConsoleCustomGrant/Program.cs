@@ -1,6 +1,5 @@
-﻿using Clients;
-using IdentityModel.Client;
-using Newtonsoft.Json.Linq;
+using Clients;
+using Duende.IdentityModel.Client;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -71,7 +70,7 @@ namespace ConsoleCustomGrant
             var response = await client.GetStringAsync("identity");
 
             "\n\nService claims:".ConsoleGreen();
-            Console.WriteLine(JArray.Parse(response));
+            Console.WriteLine(response);
         }
     }
 }

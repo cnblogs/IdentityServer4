@@ -1,8 +1,5 @@
-﻿using Duende.IdentityModel;
-using IdentityModel.Client;
-using Newtonsoft.Json.Linq;
+using Duende.IdentityModel.Client;
 using System;
-using System.Text;
 
 namespace Clients
 {
@@ -22,9 +19,6 @@ namespace Clients
                     var parts = response.AccessToken.Split('.');
                     var header = parts[0];
                     var claims = parts[1];
-
-                    Console.WriteLine(JObject.Parse(Encoding.UTF8.GetString(Base64Url.Decode(header))));
-                    Console.WriteLine(JObject.Parse(Encoding.UTF8.GetString(Base64Url.Decode(claims))));
                 }
             }
             else

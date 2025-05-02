@@ -1,14 +1,6 @@
-﻿using Clients;
+using Clients;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using IdentityModel.AspNetCore.AccessTokenValidation;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpOverrides;
 
 namespace ResourceBasedApi
 {
@@ -32,7 +24,7 @@ namespace ResourceBasedApi
                     options.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
 
                     // if token does not contain a dot, it is a reference token
-                    options.ForwardDefaultSelector = Selector.ForwardReferenceToken("introspection");
+                    // options.ForwardDefaultSelector = Selector.ForwardReferenceToken("introspection");
                 })
 
                 // reference tokens
@@ -44,7 +36,7 @@ namespace ResourceBasedApi
                     options.ClientSecret = "secret";
                 });
 
-            services.AddScopeTransformation();
+            // services.AddScopeTransformation();
         }
 
         public void Configure(IApplicationBuilder app)
