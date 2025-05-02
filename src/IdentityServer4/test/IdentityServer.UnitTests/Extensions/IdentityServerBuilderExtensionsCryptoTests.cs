@@ -1,10 +1,11 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
 using IdentityServer4;
 using IdentityServer4.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IO;
@@ -21,7 +22,9 @@ namespace IdentityServer.UnitTests.Extensions
             IServiceCollection services = new ServiceCollection();
             IIdentityServerBuilder identityServerBuilder = new IdentityServerBuilder(services);
 
-            String json =
+            IdentityModelEventSource.ShowPII = true;
+
+            var json =
             @"{
                 ""alg"" : ""RS256"",
                 ""kty"" : ""RSA"",
@@ -36,8 +39,8 @@ namespace IdentityServer.UnitTests.Extensions
                 ""qi"" :  ""w4KdmiDN1GtK71JxaasqmEKPNfV3v2KZDXKnfyhUsdx/idKbdTVjvMOkxFPJ4FqV4yIVn06f3QHTm4NEG18Diqxsrzd6kXQIHOa858tLsCcmt9FoGfrgCFgVceh3K/Zah/r8rl9Y61u0Z1kZumwMvFpFE+mVU01t9HgTEAVkHTc="",
             }";
 
-            JsonWebKey jsonWebKey = new JsonWebKey(json);
-            SigningCredentials credentials = new SigningCredentials(jsonWebKey, jsonWebKey.Alg);
+            var jsonWebKey = new JsonWebKey(json);
+            var credentials = new SigningCredentials(jsonWebKey, jsonWebKey.Alg);
             identityServerBuilder.AddSigningCredential(credentials);
         }
 
