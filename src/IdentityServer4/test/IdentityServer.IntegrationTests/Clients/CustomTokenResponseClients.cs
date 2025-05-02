@@ -2,21 +2,20 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+using Duende.IdentityModel;
+using Duende.IdentityModel.Client;
 using FluentAssertions;
-using IdentityModel;
-using IdentityModel.Client;
 using IdentityServer.IntegrationTests.Clients.Setup;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace IdentityServer.IntegrationTests.Clients

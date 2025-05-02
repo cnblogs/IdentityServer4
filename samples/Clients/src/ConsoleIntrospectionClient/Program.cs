@@ -1,5 +1,5 @@
-﻿using Clients;
-using IdentityModel.Client;
+using Clients;
+using Duende.IdentityModel.Client;
 using System;
 using System.Linq;
 using System.Net.Http;

@@ -2,20 +2,20 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using Duende.IdentityModel;
+using Duende.IdentityModel.Client;
+using FluentAssertions;
+using IdentityServer.IntegrationTests.Clients.Setup;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.TestHost;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using FluentAssertions;
-using IdentityModel;
-using IdentityModel.Client;
-using IdentityServer.IntegrationTests.Clients.Setup;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace IdentityServer.IntegrationTests.Clients
@@ -64,10 +64,10 @@ namespace IdentityServer.IntegrationTests.Clients
             payload.Should().Contain("idp", "local");
             payload.Keys.Should().Contain("jti");
             payload.Keys.Should().Contain("iat");
-            
+
             payload["aud"].Should().Be("api");
 
-            var scopes = ((JArray)payload["scope"]).Select(x => x.ToString());
+            var scopes = ((JArray) payload["scope"]).Select(x => x.ToString());
             scopes.Count().Should().Be(1);
             scopes.Should().Contain("api1");
 
@@ -96,7 +96,7 @@ namespace IdentityServer.IntegrationTests.Clients
             response.RefreshToken.Should().NotBeNull();
 
             var payload = GetPayload(response);
-            
+
             payload.Should().Contain("iss", "https://idsvr4");
             payload.Should().Contain("client_id", "roclient");
             payload.Should().Contain("sub", "88421113");
@@ -108,7 +108,7 @@ namespace IdentityServer.IntegrationTests.Clients
             amr.Count().Should().Be(1);
             amr.First().ToString().Should().Be("pwd");
 
-            var scopes = ((JArray)payload["scope"]).Select(x => x.ToString());
+            var scopes = ((JArray) payload["scope"]).Select(x => x.ToString());
             scopes.Count().Should().Be(8);
 
             // {[  "address",  "api1",  "api2", "api4.with.roles", "email",  "offline_access",  "openid", "role"]}
@@ -159,7 +159,7 @@ namespace IdentityServer.IntegrationTests.Clients
             amr.Count().Should().Be(1);
             amr.First().ToString().Should().Be("pwd");
 
-            var scopes = ((JArray)payload["scope"]).Select(x=>x.ToString());
+            var scopes = ((JArray) payload["scope"]).Select(x => x.ToString());
             scopes.Count().Should().Be(3);
             scopes.Should().Contain("api1");
             scopes.Should().Contain("email");
@@ -202,7 +202,7 @@ namespace IdentityServer.IntegrationTests.Clients
             amr.Count().Should().Be(1);
             amr.First().ToString().Should().Be("pwd");
 
-            var scopes = ((JArray)payload["scope"]).Select(x => x.ToString());
+            var scopes = ((JArray) payload["scope"]).Select(x => x.ToString());
             scopes.Count().Should().Be(4);
             scopes.Should().Contain("api1");
             scopes.Should().Contain("email");
@@ -229,7 +229,7 @@ namespace IdentityServer.IntegrationTests.Clients
             response.HttpStatusCode.Should().Be(HttpStatusCode.BadRequest);
             response.Error.Should().Be("invalid_grant");
         }
-        
+
         [Fact]
         public async Task User_with_empty_password_should_succeed()
         {
@@ -269,7 +269,7 @@ namespace IdentityServer.IntegrationTests.Clients
         }
 
 
-        private static Dictionary<string, object> GetPayload(IdentityModel.Client.TokenResponse response)
+        private static Dictionary<string, object> GetPayload(TokenResponse response)
         {
             var token = response.AccessToken.Split('.').Skip(1).Take(1).First();
             var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(

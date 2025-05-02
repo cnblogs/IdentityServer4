@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Configuration;
 using IdentityServer4.Extensions;
 using IdentityServer4.Logging;
@@ -21,7 +21,7 @@ namespace IdentityServer4.Validation
         private readonly IdentityServerOptions _options;
         private readonly IResourceValidator _resourceValidator;
         private readonly ILogger<DeviceAuthorizationRequestValidator> _logger;
-        
+
         public DeviceAuthorizationRequestValidator(
             IdentityServerOptions options,
             IResourceValidator resourceValidator,
@@ -152,8 +152,9 @@ namespace IdentityServer4.Validation
             //////////////////////////////////////////////////////////
             // check if scopes are valid/supported
             //////////////////////////////////////////////////////////
-            var validatedResources = await _resourceValidator.ValidateRequestedResourcesAsync(new ResourceValidationRequest{
-                Client = request.Client, 
+            var validatedResources = await _resourceValidator.ValidateRequestedResourcesAsync(new ResourceValidationRequest
+            {
+                Client = request.Client,
                 Scopes = request.RequestedScopes
             });
 
@@ -163,7 +164,7 @@ namespace IdentityServer4.Validation
                 {
                     return Invalid(request, OidcConstants.AuthorizeErrors.InvalidScope);
                 }
-                
+
                 return Invalid(request, OidcConstants.AuthorizeErrors.UnauthorizedClient, "Invalid scope");
             }
 
@@ -174,7 +175,7 @@ namespace IdentityServer4.Validation
             }
 
             request.ValidatedResources = validatedResources;
-            
+
             return Valid(request);
         }
     }

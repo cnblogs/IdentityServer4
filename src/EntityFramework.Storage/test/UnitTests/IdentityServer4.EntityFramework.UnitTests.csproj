@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0</TargetFrameworks>
+    <TargetFrameworks>net9.0</TargetFrameworks>
 
     <AssemblyOriginatorKeyFile>../../../../key.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
@@ -17,7 +17,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio" />
-    
+
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
   </ItemGroup>
 

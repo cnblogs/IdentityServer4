@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Configuration;
 using IdentityServer4.Extensions;
 using Microsoft.AspNetCore.Http;
@@ -58,7 +58,7 @@ namespace IdentityServer4.Services
         /// The name of the check session cookie.
         /// </value>
         protected string CheckSessionCookieName => Options.Authentication.CheckSessionCookieName;
-        
+
         /// <summary>
         /// Gets the domain of the check session cookie.
         /// </summary>

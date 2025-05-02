@@ -1,13 +1,12 @@
-﻿using System;
-using System.Globalization;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Clients;
-using IdentityModel.Client;
+using Duende.IdentityModel.Client;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
+using System;
+using System.Globalization;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace MvcCode.Controllers
 {
@@ -21,14 +20,14 @@ namespace MvcCode.Controllers
             _httpClientFactory = httpClientFactory;
             _discoveryCache = discoveryCache;
         }
-        
+
         [AllowAnonymous]
         public IActionResult Index() => View();
 
         public IActionResult Secure() => View();
 
         public IActionResult Logout() => SignOut("oidc");
-        
+
         public async Task<IActionResult> CallApi()
         {
             var token = await HttpContext.GetTokenAsync("access_token");
@@ -37,7 +36,7 @@ namespace MvcCode.Controllers
             client.SetBearerToken(token);
 
             var response = await client.GetStringAsync(Constants.SampleApi + "identity");
-            ViewBag.Json = JArray.Parse(response).ToString();
+            ViewBag.Json = response;
 
             return View();
         }

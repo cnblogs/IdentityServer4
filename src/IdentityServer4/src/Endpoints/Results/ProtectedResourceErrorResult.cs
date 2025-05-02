@@ -8,7 +8,7 @@ using Microsoft.Extensions.Primitives;
 using IdentityServer4.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
-using IdentityModel;
+using Duende.IdentityModel;
 
 namespace IdentityServer4.Endpoints.Results
 {

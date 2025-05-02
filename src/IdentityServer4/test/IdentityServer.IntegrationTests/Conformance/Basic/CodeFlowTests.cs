@@ -2,6 +2,12 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using Duende.IdentityModel.Client;
+using FluentAssertions;
+using IdentityServer.IntegrationTests.Common;
+using IdentityServer4.Configuration;
+using IdentityServer4.Models;
+using IdentityServer4.Test;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -9,17 +15,11 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using FluentAssertions;
-using IdentityModel.Client;
-using IdentityServer.IntegrationTests.Common;
-using IdentityServer4.Configuration;
-using IdentityServer4.Models;
-using IdentityServer4.Test;
 using Xunit;
 
 namespace IdentityServer.IntegrationTests.Conformance.Basic
 {
-    public class CodeFlowTests 
+    public class CodeFlowTests
     {
         private const string Category = "Conformance.Basic.CodeFlowTests";
 
@@ -107,7 +107,7 @@ namespace IdentityServer.IntegrationTests.Conformance.Basic
             tokenResult.IdentityToken.Should().NotBeNull();
 
             var token = new JwtSecurityToken(tokenResult.IdentityToken);
-            
+
             var s_hash = token.Claims.FirstOrDefault(c => c.Type == "s_hash");
             s_hash.Should().BeNull();
         }
@@ -156,7 +156,7 @@ namespace IdentityServer.IntegrationTests.Conformance.Basic
             tokenResult.IdentityToken.Should().NotBeNull();
 
             var token = new JwtSecurityToken(tokenResult.IdentityToken);
-            
+
             var s_hash = token.Claims.FirstOrDefault(c => c.Type == "s_hash");
             s_hash.Should().NotBeNull();
             s_hash.Value.Should().Be(CryptoHelper.CreateHashClaimValue("state", "RS256"));

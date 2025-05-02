@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityModel;
+using Duende.IdentityModel;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -36,17 +36,17 @@ namespace IdentityServer4.Test
         public bool ValidateCredentials(string username, string password)
         {
             var user = FindByUsername(username);
-            
+
             if (user != null)
             {
                 if (string.IsNullOrWhiteSpace(user.Password) && string.IsNullOrWhiteSpace(password))
                 {
                     return true;
                 }
-                
+
                 return user.Password.Equals(password);
             }
-            
+
             return false;
         }
 

@@ -5,7 +5,7 @@
 using System.Collections.Specialized;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Validation.Setup;
 using IdentityServer4.Stores;
 using Xunit;
@@ -94,7 +94,7 @@ namespace IdentityServer.UnitTests.Validation.TokenRequest_Validation
             };
 
             var result = await validator.ValidateRequestAsync(
-                parameters, 
+                parameters,
                 client.ToValidationResult());
 
             result.IsError.Should().BeTrue();

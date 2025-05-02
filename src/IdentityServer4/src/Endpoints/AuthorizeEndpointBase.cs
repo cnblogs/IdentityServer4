@@ -5,7 +5,7 @@ using System;
 using System.Collections.Specialized;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Configuration;
 using IdentityServer4.Endpoints.Results;
 using IdentityServer4.Events;

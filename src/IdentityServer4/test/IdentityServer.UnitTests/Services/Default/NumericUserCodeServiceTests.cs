@@ -1,6 +1,6 @@
-using System.Threading.Tasks;
 using FluentAssertions;
 using IdentityServer4.Services;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace IdentityServer.UnitTests.Services.Default
@@ -15,8 +15,8 @@ namespace IdentityServer.UnitTests.Services.Default
             var userCode = await sut.GenerateAsync();
             var userCodeInt = int.Parse(userCode);
 
-            userCodeInt.Should().BeGreaterOrEqualTo(100000000);
-            userCodeInt.Should().BeLessOrEqualTo(999999999);
+            userCodeInt.Should().BeGreaterThanOrEqualTo(100000000);
+            userCodeInt.Should().BeLessThanOrEqualTo(999999999);
         }
     }
 }

@@ -2,15 +2,9 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Threading.Tasks;
+using Duende.IdentityModel;
+using Duende.IdentityModel.Client;
 using FluentAssertions;
-using IdentityModel;
-using IdentityModel.Client;
 using IdentityServer.IntegrationTests.Common;
 using IdentityServer4;
 using IdentityServer4.Models;
@@ -18,6 +12,12 @@ using IdentityServer4.Stores;
 using IdentityServer4.Stores.Default;
 using IdentityServer4.Test;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace IdentityServer.IntegrationTests.Endpoints.Authorize
@@ -234,7 +234,7 @@ namespace IdentityServer.IntegrationTests.Endpoints.Authorize
             response.StatusCode.Should().Be(HttpStatusCode.Redirect);
             response.Headers.Location.ToString().Should().StartWith("https://client1/callback");
 
-            var authorization = new IdentityModel.Client.AuthorizeResponse(response.Headers.Location.ToString());
+            var authorization = new AuthorizeResponse(response.Headers.Location.ToString());
             authorization.IsError.Should().BeFalse();
             authorization.IdentityToken.Should().NotBeNull();
             authorization.State.Should().Be("123_state");
@@ -260,7 +260,7 @@ namespace IdentityServer.IntegrationTests.Endpoints.Authorize
             response.StatusCode.Should().Be(HttpStatusCode.Redirect);
             response.Headers.Location.ToString().Should().StartWith("https://client1/callback");
 
-            var authorization = new IdentityModel.Client.AuthorizeResponse(response.Headers.Location.ToString());
+            var authorization = new AuthorizeResponse(response.Headers.Location.ToString());
             authorization.IsError.Should().BeFalse();
             authorization.IdentityToken.Should().NotBeNull();
             authorization.State.Should().Be("123_state");
@@ -303,7 +303,7 @@ namespace IdentityServer.IntegrationTests.Endpoints.Authorize
             response.StatusCode.Should().Be(HttpStatusCode.Redirect);
             response.Headers.Location.ToString().Should().StartWith("https://client2/callback");
 
-            var authorization = new IdentityModel.Client.AuthorizeResponse(response.Headers.Location.ToString());
+            var authorization = new AuthorizeResponse(response.Headers.Location.ToString());
             authorization.IsError.Should().BeFalse();
             authorization.IdentityToken.Should().NotBeNull();
             authorization.State.Should().Be("123_state");

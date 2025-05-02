@@ -5,7 +5,7 @@
 using System.Collections.Specialized;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Common;
 using IdentityServer.UnitTests.Validation.Setup;
 using IdentityServer4.Configuration;
@@ -31,7 +31,7 @@ namespace IdentityServer.UnitTests.Validation.AuthorizeRequest_Validation
 
             var validator = Factory.CreateAuthorizeRequestValidator();
             var result = await validator.ValidateAsync(parameters);
-            
+
             result.IsError.Should().BeFalse();
         }
 
@@ -47,7 +47,7 @@ namespace IdentityServer.UnitTests.Validation.AuthorizeRequest_Validation
 
             var validator = Factory.CreateAuthorizeRequestValidator();
             var result = await validator.ValidateAsync(parameters);
-            
+
             result.IsError.Should().BeFalse();
         }
 
@@ -63,7 +63,7 @@ namespace IdentityServer.UnitTests.Validation.AuthorizeRequest_Validation
 
             var validator = Factory.CreateAuthorizeRequestValidator();
             var result = await validator.ValidateAsync(parameters);
-            
+
             result.IsError.Should().BeFalse();
         }
 
@@ -79,7 +79,7 @@ namespace IdentityServer.UnitTests.Validation.AuthorizeRequest_Validation
 
             var validator = Factory.CreateAuthorizeRequestValidator();
             var result = await validator.ValidateAsync(parameters);
-            
+
             result.IsError.Should().BeFalse();
         }
 
@@ -181,7 +181,7 @@ namespace IdentityServer.UnitTests.Validation.AuthorizeRequest_Validation
 
             var validator = Factory.CreateAuthorizeRequestValidator();
             var result = await validator.ValidateAsync(parameters);
-            
+
             result.IsError.Should().BeFalse();
         }
 
@@ -198,7 +198,7 @@ namespace IdentityServer.UnitTests.Validation.AuthorizeRequest_Validation
 
             var validator = Factory.CreateAuthorizeRequestValidator();
             var result = await validator.ValidateAsync(parameters);
-            
+
             result.IsError.Should().BeFalse();
         }
 
@@ -214,7 +214,7 @@ namespace IdentityServer.UnitTests.Validation.AuthorizeRequest_Validation
 
             var validator = Factory.CreateAuthorizeRequestValidator();
             var result = await validator.ValidateAsync(parameters);
-            
+
             result.IsError.Should().BeFalse();
         }
 

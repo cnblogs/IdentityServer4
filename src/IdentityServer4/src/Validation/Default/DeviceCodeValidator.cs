@@ -4,7 +4,7 @@
 
 using System.Linq;
 using System.Threading.Tasks;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
@@ -61,7 +61,7 @@ namespace IdentityServer4.Validation
                 context.Result = new TokenRequestValidationResult(context.Request, OidcConstants.TokenErrors.InvalidGrant);
                 return;
             }
-            
+
             // validate client binding
             if (deviceCode.ClientId != context.Request.Client.ClientId)
             {

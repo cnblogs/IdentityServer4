@@ -4,7 +4,7 @@
 
 using System;
 using IdentityServerHost.Configuration;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -38,7 +38,7 @@ namespace IdentityServerHost
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            
+
             // cookie policy to deal with temporary browser incompatibilities
             services.AddSameSiteCookiePolicy();
 
@@ -78,7 +78,7 @@ namespace IdentityServerHost
             //     options.ConfigureDbContext = b => b.UseSqlite(connectionString,
             //         sql => sql.MigrationsAssembly(migrationsAssembly));
             // });
-                
+
 
             services.AddExternalIdentityProviders();
 
@@ -88,9 +88,9 @@ namespace IdentityServerHost
                     options.AllowedCertificateTypes = CertificateTypes.All;
                     options.RevocationMode = X509RevocationMode.NoCheck;
                 });
-            
+
             services.AddCertificateForwardingForNginx();
-            
+
             services.AddLocalApiAuthentication(principal =>
             {
                 principal.Identities.First().AddClaim(new Claim("additional_claim", "additional_value"));
@@ -103,7 +103,7 @@ namespace IdentityServerHost
         {
             // use this for persisted grants store
             // app.InitializePersistedGrantsStore();
-            
+
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
@@ -111,7 +111,7 @@ namespace IdentityServerHost
 
             app.UseCertificateForwarding();
             app.UseCookiePolicy();
-            
+
             app.UseSerilogRequestLogging();
 
             app.UseDeveloperExceptionPage();
@@ -252,7 +252,7 @@ namespace IdentityServerHost
                 {
                     X509Certificate2 clientCertificate = null;
 
-                    if(!string.IsNullOrWhiteSpace(headerValue))
+                    if (!string.IsNullOrWhiteSpace(headerValue))
                     {
                         byte[] bytes = Encoding.UTF8.GetBytes(Uri.UnescapeDataString(headerValue));
                         clientCertificate = new X509Certificate2(bytes);

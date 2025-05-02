@@ -5,7 +5,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Common;
 using IdentityServer4.Configuration;
 using IdentityServer4.Models;
@@ -51,12 +51,13 @@ namespace IdentityServer.UnitTests.Services.Default
         [Fact]
         public async Task CreateAccessTokenAsync_should_include_aud_for_each_ApiResource()
         {
-            var request = new TokenCreationRequest { 
+            var request = new TokenCreationRequest
+            {
                 ValidatedResources = new ResourceValidationResult()
                 {
                     Resources = new Resources()
                     {
-                        ApiResources = 
+                        ApiResources =
                         {
                             new ApiResource("api1"){ Scopes = { "scope1" } },
                             new ApiResource("api2"){ Scopes = { "scope2" } },

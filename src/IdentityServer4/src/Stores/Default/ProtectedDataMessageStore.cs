@@ -5,7 +5,7 @@
 using IdentityServer4.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.DataProtection;
-using IdentityModel;
+using Duende.IdentityModel;
 using System.Text;
 using System;
 using Microsoft.Extensions.Logging;
@@ -55,7 +55,7 @@ namespace IdentityServer4.Stores
                     var json = Encoding.UTF8.GetString(bytes);
                     result = ObjectSerializer.FromString<Message<TModel>>(json);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Logger.LogError(ex, "Exception reading protected message");
                 }
@@ -76,7 +76,7 @@ namespace IdentityServer4.Stores
                 bytes = Protector.Protect(bytes);
                 value = Base64Url.Encode(bytes);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Logger.LogError(ex, "Exception writing protected message");
             }

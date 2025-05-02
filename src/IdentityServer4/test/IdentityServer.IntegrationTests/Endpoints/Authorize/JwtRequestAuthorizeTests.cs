@@ -2,17 +2,9 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Security.Claims;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
+using Duende.IdentityModel;
+using Duende.IdentityModel.Client;
 using FluentAssertions;
-using IdentityModel;
-using IdentityModel.Client;
 using IdentityServer.IntegrationTests.Common;
 using IdentityServer4;
 using IdentityServer4.Configuration;
@@ -20,7 +12,15 @@ using IdentityServer4.Models;
 using IdentityServer4.Test;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
+using System.Text.Json;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace IdentityServer.IntegrationTests.Endpoints.Authorize
@@ -29,10 +29,10 @@ namespace IdentityServer.IntegrationTests.Endpoints.Authorize
     {
         private const string Category = "Authorize endpoint with JWT requests";
 
-        private readonly IdentityServerPipeline _mockPipeline = new IdentityServerPipeline();
+        private readonly IdentityServerPipeline _mockPipeline = new();
         private readonly Client _client;
 
-        private readonly string _symmetricJwk = @"{ 'kty': 'oct', 'use': 'sig', 'kid': '1', 'k': 'nYA-IFt8xTsdBHe9hunvizcp3Dt7f6qGqudq18kZHNtvqEGjJ9Ud-9x3kbQ-LYfLHS3xM2MpFQFg1JzT_0U_F8DI40oby4TvBDGszP664UgA8_5GjB7Flnrlsap1NlitvNpgQX3lpyTvC2zVuQ-UVsXbBDAaSBUSlnw7SE4LM8Ye2WYZrdCCXL8yAX9vIR7vf77yvNTEcBCI6y4JlvZaqMB4YKVSfygs8XqGGCHjLpE5bvI-A4ESbAUX26cVFvCeDg9pR6HK7BmwPMlO96krgtKZcXEJtUELYPys6-rbwAIdmxJxKxpgRpt0FRv_9fm6YPwG7QivYBX-vRwaodL1TA', 'alg': 'HS256'}";
+        private readonly string _symmetricJwk = @"{ ""kty"": ""oct"", ""use"": ""sig"", ""kid"": ""1"", ""k"": ""nYA-IFt8xTsdBHe9hunvizcp3Dt7f6qGqudq18kZHNtvqEGjJ9Ud-9x3kbQ-LYfLHS3xM2MpFQFg1JzT_0U_F8DI40oby4TvBDGszP664UgA8_5GjB7Flnrlsap1NlitvNpgQX3lpyTvC2zVuQ-UVsXbBDAaSBUSlnw7SE4LM8Ye2WYZrdCCXL8yAX9vIR7vf77yvNTEcBCI6y4JlvZaqMB4YKVSfygs8XqGGCHjLpE5bvI-A4ESbAUX26cVFvCeDg9pR6HK7BmwPMlO96krgtKZcXEJtUELYPys6-rbwAIdmxJxKxpgRpt0FRv_9fm6YPwG7QivYBX-vRwaodL1TA"", ""alg"": ""HS256""}";
         private readonly RsaSecurityKey _rsaKey;
 
         public JwtRequestAuthorizeTests()
@@ -70,13 +70,13 @@ namespace IdentityServer.IntegrationTests.Endpoints.Authorize
                         {
                             // RSA key as JWK
                             Type = IdentityServerConstants.SecretTypes.JsonWebKey,
-                            Value = JsonConvert.SerializeObject(JsonWebKeyConverter.ConvertFromRSASecurityKey(_rsaKey))
+                            Value = JsonSerializer.Serialize(JsonWebKeyConverter.ConvertFromRSASecurityKey(_rsaKey))
                         },
                         new Secret
                         {
                             // x509 cert as JWK
                             Type = IdentityServerConstants.SecretTypes.JsonWebKey,
-                            Value = JsonConvert.SerializeObject(JsonWebKeyConverter.ConvertFromX509SecurityKey(new X509SecurityKey(TestCert.Load())))
+                            Value = JsonSerializer.Serialize(JsonWebKeyConverter.ConvertFromX509SecurityKey(new X509SecurityKey(TestCert.Load())))
                         }
                     },
 
@@ -114,13 +114,13 @@ namespace IdentityServer.IntegrationTests.Endpoints.Authorize
                         {
                             // RSA key as JWK
                             Type = IdentityServerConstants.SecretTypes.JsonWebKey,
-                            Value = JsonConvert.SerializeObject(JsonWebKeyConverter.ConvertFromRSASecurityKey(_rsaKey))
+                            Value = JsonSerializer.Serialize(JsonWebKeyConverter.ConvertFromRSASecurityKey(_rsaKey))
                         },
                         new Secret
                         {
                             // x509 cert as JWK
                             Type = IdentityServerConstants.SecretTypes.JsonWebKey,
-                            Value = JsonConvert.SerializeObject(JsonWebKeyConverter.ConvertFromX509SecurityKey(new X509SecurityKey(TestCert.Load())))
+                            Value = JsonSerializer.Serialize(JsonWebKeyConverter.ConvertFromX509SecurityKey(new X509SecurityKey(TestCert.Load())))
                         }
                     },
 
@@ -485,63 +485,10 @@ namespace IdentityServer.IntegrationTests.Endpoints.Authorize
             _mockPipeline.LoginRequest.Should().BeNull();
         }
 
-        [Fact]
-        [Trait("Category", Category)]
+        [Obsolete]
         public async Task authorize_should_accept_complex_objects_in_request_object()
         {
-            var someObj = new { foo = new { bar = "bar" }, baz = "baz" };
-            var someObjJson = JsonConvert.SerializeObject(someObj);
-            var someArr = new[] { "a", "b", "c" };
-            var someArrJson = JsonConvert.SerializeObject(someArr);
-
-
-            var requestJwt = CreateRequestJwt(
-                issuer: _client.ClientId,
-                audience: IdentityServerPipeline.BaseUrl,
-                credential: new X509SigningCredentials(TestCert.Load()),
-                claims: new[] {
-                    new Claim("client_id", _client.ClientId),
-                    new Claim("response_type", "id_token"),
-                    new Claim("scope", "openid profile"),
-                    new Claim("state", "123state"),
-                    new Claim("nonce", "123nonce"),
-                    new Claim("redirect_uri", "https://client/callback"),
-                    new Claim("acr_values", "acr_1 acr_2 tenant:tenant_value idp:idp_value"),
-                    new Claim("login_hint", "login_hint_value"),
-                    new Claim("display", "popup"),
-                    new Claim("ui_locales", "ui_locale_value"),
-                    new Claim("foo", "123foo"),
-                    new Claim("someObj", someObjJson, Microsoft.IdentityModel.JsonWebTokens.JsonClaimValueTypes.Json),
-                    new Claim("someArr", someArrJson, Microsoft.IdentityModel.JsonWebTokens.JsonClaimValueTypes.JsonArray),
-            });
-
-            var url = _mockPipeline.CreateAuthorizeUrl(
-                clientId: _client.ClientId,
-                responseType: "id_token",
-                extra: Parameters.FromObject(new
-                {
-                    request = requestJwt
-                }));
-            var response = await _mockPipeline.BrowserClient.GetAsync(url);
-
-            _mockPipeline.LoginRequest.Should().NotBeNull();
-
-            _mockPipeline.LoginRequest.Parameters["someObj"].Should().NotBeNull();
-            var someObj2 = JsonConvert.DeserializeObject(_mockPipeline.LoginRequest.Parameters["someObj"], someObj.GetType());
-            someObj.Should().BeEquivalentTo(someObj2);
-            _mockPipeline.LoginRequest.Parameters["someArr"].Should().NotBeNull();
-            var someArr2 = JsonConvert.DeserializeObject<string[]>(_mockPipeline.LoginRequest.Parameters["someArr"]);
-            someArr2.Should().Contain(new[] { "a", "c", "b" });
-            someArr2.Length.Should().Be(3);
-
-            _mockPipeline.LoginRequest.RequestObjectValues.Count.Should().Be(13);
-            _mockPipeline.LoginRequest.RequestObjectValues["someObj"].Should().NotBeNull();
-            someObj2 = JsonConvert.DeserializeObject(_mockPipeline.LoginRequest.RequestObjectValues["someObj"], someObj.GetType());
-            someObj.Should().BeEquivalentTo(someObj2);
-            _mockPipeline.LoginRequest.RequestObjectValues["someArr"].Should().NotBeNull();
-            someArr2 = JsonConvert.DeserializeObject<string[]>(_mockPipeline.LoginRequest.Parameters["someArr"]);
-            someArr2.Should().Contain(new[] { "a", "c", "b" });
-            someArr2.Length.Should().Be(3);
+            // See https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/issues/2585
         }
 
         [Fact]

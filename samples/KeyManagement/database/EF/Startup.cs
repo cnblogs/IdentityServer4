@@ -4,7 +4,7 @@
 
 using System;
 using System.Linq;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.KeyManagement.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
@@ -43,7 +43,7 @@ namespace sample
                     ConfigureDbContext = b => b.UseSqlServer(cn),
                     LoggerFactory = LoggerFactory,
                 });
-                //.ProtectKeysWithCertificate(cert);
+            //.ProtectKeysWithCertificate(cert);
 
             var builder = services.AddIdentityServer()
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
@@ -68,11 +68,12 @@ namespace sample
                         options.Licensee = "your licensee";
                         options.License = "your license key";
                     })
-                    .PersistKeysToDatabase(new DatabaseKeyManagementOptions {
+                    .PersistKeysToDatabase(new DatabaseKeyManagementOptions
+                    {
                         ConfigureDbContext = b => b.UseSqlServer(cn),
                     })
                     .ProtectKeysWithDataProtection()
-                    //.EnableInMemoryCaching() // caching disabled unless explicitly enabled
+                //.EnableInMemoryCaching() // caching disabled unless explicitly enabled
                 ;
         }
 

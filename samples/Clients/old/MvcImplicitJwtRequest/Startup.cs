@@ -1,5 +1,5 @@
 ﻿using Clients;
-using IdentityModel;
+using Duende.IdentityModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;

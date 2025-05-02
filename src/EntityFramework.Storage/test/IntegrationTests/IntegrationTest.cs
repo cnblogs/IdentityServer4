@@ -1,8 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Runtime.InteropServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 using Xunit;
 
 namespace IdentityServer4.EntityFramework.IntegrationTests
@@ -17,7 +18,7 @@ namespace IdentityServer4.EntityFramework.IntegrationTests
     public class IntegrationTest<TClass, TDbContext, TStoreOption> : IClassFixture<DatabaseProviderFixture<TDbContext>>
         where TDbContext : DbContext
     {
-        public static readonly TheoryData<DbContextOptions<TDbContext>> TestDatabaseProviders;
+        public static readonly IReadOnlyCollection<object[]> TestDatabaseProviders;
         protected readonly TStoreOption StoreOptions = Activator.CreateInstance<TStoreOption>();
 
         static IntegrationTest()
@@ -50,7 +51,7 @@ namespace IdentityServer4.EntityFramework.IntegrationTests
 
         protected IntegrationTest(DatabaseProviderFixture<TDbContext> fixture)
         {
-            fixture.Options = TestDatabaseProviders.SelectMany(x => x.Select(y => (DbContextOptions<TDbContext>)y)).ToList();
+            fixture.Options = TestDatabaseProviders.SelectMany(x => x.Select(y => (DbContextOptions<TDbContext>) y)).ToList();
             fixture.StoreOptions = StoreOptions;
         }
     }

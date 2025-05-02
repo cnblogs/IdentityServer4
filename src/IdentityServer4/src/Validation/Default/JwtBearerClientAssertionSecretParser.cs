@@ -6,7 +6,7 @@ using System;
 using System.Threading.Tasks;
 using System.Linq;
 using System.IdentityModel.Tokens.Jwt;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Configuration;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;

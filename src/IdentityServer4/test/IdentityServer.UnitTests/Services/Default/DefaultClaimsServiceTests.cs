@@ -6,7 +6,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Common;
 using IdentityServer4;
 using IdentityServer4.Configuration;
@@ -178,7 +178,7 @@ namespace IdentityServer.UnitTests.Services.Default
             scopes.Count().Should().Be(4);
             scopes.ToArray().Should().BeEquivalentTo(new string[] { "api1", "api2", "id1", "id2" });
         }
-        
+
         [Fact]
         public async Task GetAccessTokenClaimsAsync_should_contain_parameterized_scope_values()
         {
@@ -206,7 +206,7 @@ namespace IdentityServer.UnitTests.Services.Default
             var scopes = claims.Where(x => x.Type == JwtClaimTypes.Scope).Select(x => x.Value);
             scopes.Count().Should().Be(0);
         }
-        
+
         [Fact]
         public async Task GetAccessTokenClaimsAsync_should_only_consider_parsed_scope_values_and_not_ApiScope()
         {
@@ -245,7 +245,7 @@ namespace IdentityServer.UnitTests.Services.Default
             scopes.Count().Should().Be(1);
             scopes.ToArray().Should().BeEquivalentTo(new string[] { "resource" });
         }
-        
+
         [Fact]
         public async Task GetAccessTokenClaimsAsync_should_contain_offline_scope()
         {
@@ -351,7 +351,7 @@ namespace IdentityServer.UnitTests.Services.Default
                 new ApiResource("api")
                 {
                     UserClaims = { "foo" },
-                    Scopes = { "api1" } 
+                    Scopes = { "api1" }
                 }
             );
             _resources.ApiScopes.Add(

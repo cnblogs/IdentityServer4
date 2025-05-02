@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Common;
 using IdentityServer4.Models;
 
@@ -16,7 +16,7 @@ namespace IdentityServer.UnitTests.Validation.Setup
     {
         public static Token CreateAccessToken(Client client, string subjectId, int lifetime, params string[] scopes)
         {
-            var claims = new List<Claim> 
+            var claims = new List<Claim>
             {
                 new Claim("client_id", client.ClientId),
                 new Claim("sub", subjectId)
@@ -71,7 +71,7 @@ namespace IdentityServer.UnitTests.Validation.Setup
         {
             var clients = Factory.CreateClientStore();
 
-            var claims = new List<Claim> 
+            var claims = new List<Claim>
             {
                 new Claim("sub", subjectId)
             };

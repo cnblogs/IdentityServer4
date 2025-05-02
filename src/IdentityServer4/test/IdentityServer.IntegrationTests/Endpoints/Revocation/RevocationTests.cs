@@ -2,16 +2,17 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using Duende.IdentityModel;
+using Duende.IdentityModel.Client;
+using FluentAssertions;
+using IdentityServer.IntegrationTests.Common;
+using IdentityServer4.Models;
+using IdentityServer4.Test;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using FluentAssertions;
-using IdentityModel.Client;
-using IdentityServer.IntegrationTests.Common;
-using IdentityServer4.Models;
-using IdentityServer4.Test;
 using Xunit;
 
 namespace IdentityServer.IntegrationTests.Endpoints.Revocation
@@ -175,7 +176,7 @@ namespace IdentityServer.IntegrationTests.Endpoints.Revocation
                 ClientSecret = scope_secret,
 
                 Token = token,
-                TokenTypeHint = IdentityModel.OidcConstants.TokenTypes.AccessToken
+                TokenTypeHint = OidcConstants.TokenTypes.AccessToken
             });
 
             return response.IsError == false && response.IsActive;

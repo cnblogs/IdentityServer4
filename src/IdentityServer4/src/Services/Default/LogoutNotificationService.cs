@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Stores;
@@ -28,7 +28,7 @@ namespace IdentityServer4.Services
         /// </summary>
         public LogoutNotificationService(
             IClientStore clientStore,
-            IHttpContextAccessor httpContextAccessor, 
+            IHttpContextAccessor httpContextAccessor,
             ILogger<LogoutNotificationService> logger)
         {
             _clientStore = clientStore;

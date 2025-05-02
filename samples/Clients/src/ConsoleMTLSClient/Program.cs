@@ -1,9 +1,7 @@
-﻿using Clients;
-using IdentityModel;
-using IdentityModel.Client;
-using Newtonsoft.Json.Linq;
+using Clients;
+using Duende.IdentityModel;
+using Duende.IdentityModel.Client;
 using System;
-using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -32,9 +30,8 @@ namespace ConsoleMTLSClient
 
             var endpoint = disco
                     .TryGetValue(OidcConstants.Discovery.MtlsEndpointAliases)
-                    .Value<string>(OidcConstants.Discovery.TokenEndpoint)
-                    .ToString();
-            
+                    .Value.TryGetString(OidcConstants.Discovery.TokenEndpoint);
+
             var response = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
             {
                 Address = endpoint,
@@ -58,13 +55,13 @@ namespace ConsoleMTLSClient
             var response = await client.GetStringAsync("identity");
 
             "\n\nService claims:".ConsoleGreen();
-            Console.WriteLine(JArray.Parse(response));
+            Console.WriteLine(response);
         }
 
         static SocketsHttpHandler GetHandler()
         {
             var handler = new SocketsHttpHandler();
-            
+
             var cert = new X509Certificate2("client.p12", "changeit");
             handler.SslOptions.ClientCertificates = new X509CertificateCollection { cert };
 

@@ -10,7 +10,7 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
-using IdentityModel;
+using Duende.IdentityModel;
 using Microsoft.AspNetCore.Http;
 
 namespace IdentityServer4.Validation

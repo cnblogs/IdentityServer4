@@ -5,7 +5,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Validation.Setup;
 using Xunit;
 

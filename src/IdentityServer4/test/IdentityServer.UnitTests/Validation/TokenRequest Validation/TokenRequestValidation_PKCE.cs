@@ -8,7 +8,7 @@ using System.Collections.Specialized;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Common;
 using IdentityServer.UnitTests.Validation.Setup;
 using IdentityServer4;
@@ -119,7 +119,7 @@ namespace IdentityServer.UnitTests.Validation.TokenRequest_Validation
 
             var verifier = "x".Repeat(lengths.CodeVerifierMinLength);
             var challenge = VerifierToSha256CodeChallenge(verifier);
-            
+
             var code = new AuthorizationCode
             {
                 CreationTime = DateTime.UtcNow,

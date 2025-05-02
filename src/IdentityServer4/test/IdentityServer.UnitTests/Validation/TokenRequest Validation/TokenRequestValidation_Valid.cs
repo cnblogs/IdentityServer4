@@ -8,7 +8,7 @@ using System.Collections.Specialized;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Validation.Setup;
 using IdentityServer4;
 using IdentityServer4.Models;
@@ -40,7 +40,7 @@ namespace IdentityServer.UnitTests.Validation.TokenRequest_Validation
             result.IsError.Should().BeFalse();
             result.ValidatedRequest.UserName.Should().Be("bob_no_password");
         }
-        
+
         [Fact]
         [Trait("Category", Category)]
         public async Task Valid_code_request_should_succeed()
@@ -139,7 +139,7 @@ namespace IdentityServer.UnitTests.Validation.TokenRequest_Validation
 
             var parameters = new NameValueCollection();
             parameters.Add(OidcConstants.TokenRequest.GrantType, OidcConstants.GrantTypes.ClientCredentials);
-            
+
 
             var result = await validator.ValidateRequestAsync(parameters, client.ToValidationResult());
 
@@ -322,7 +322,7 @@ namespace IdentityServer.UnitTests.Validation.TokenRequest_Validation
 
             result.IsError.Should().BeFalse();
         }
-        
+
         [Fact]
         [Trait("Category", Category)]
         public async Task Valid_device_code_request_should_succeed()

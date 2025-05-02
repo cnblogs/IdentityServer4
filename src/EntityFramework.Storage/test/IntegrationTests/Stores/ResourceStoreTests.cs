@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.EntityFramework.Options;
@@ -36,7 +36,7 @@ namespace IdentityServer4.EntityFramework.IntegrationTests.Stores
                 DisplayName = Guid.NewGuid().ToString(),
                 Description = Guid.NewGuid().ToString(),
                 ShowInDiscoveryDocument = true,
-                UserClaims = 
+                UserClaims =
                 {
                     JwtClaimTypes.Subject,
                     JwtClaimTypes.Name,
@@ -58,7 +58,7 @@ namespace IdentityServer4.EntityFramework.IntegrationTests.Stores
                 }
             };
         }
-        
+
         private static ApiScope CreateApiScopeTestResource()
         {
             return new ApiScope()
@@ -345,7 +345,7 @@ namespace IdentityServer4.EntityFramework.IntegrationTests.Stores
                 context.IdentityResources.Add(hiddenIdentityResource.ToEntity());
                 context.ApiResources.Add(hiddenApiResource.ToEntity());
                 context.ApiScopes.Add(hiddenApiScope.ToEntity());
-                
+
                 context.SaveChanges();
             }
 

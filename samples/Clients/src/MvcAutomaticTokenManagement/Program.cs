@@ -12,7 +12,7 @@ namespace MvcCode
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Warning()
-                .MinimumLevel.Override("IdentityModel", LogEventLevel.Debug)
+                .MinimumLevel.Override("Duende.IdentityModel", LogEventLevel.Debug)
                 .MinimumLevel.Override("System.Net.Http", LogEventLevel.Information)
                 .MinimumLevel.Override("Microsoft.AspNetCore.Authentication", LogEventLevel.Information)
                 .Enrich.FromLogContext()
@@ -38,10 +38,10 @@ namespace MvcCode
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseSerilog();
                 });
     }
 }

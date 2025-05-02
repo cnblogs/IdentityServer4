@@ -1,14 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using Clients;
+using Duende.IdentityModel.Client;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using System.Net.Http;
-using Clients;
-using Newtonsoft.Json.Linq;
-using IdentityModel.Client;
-using System.Globalization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Globalization;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace MvcHybrid.Controllers
 {
@@ -43,7 +42,7 @@ namespace MvcHybrid.Controllers
             client.SetBearerToken(token);
 
             var response = await client.GetStringAsync(Constants.SampleApi + "identity");
-            ViewBag.Json = JArray.Parse(response).ToString();
+            ViewBag.Json = response.ToString();
 
             return View();
         }

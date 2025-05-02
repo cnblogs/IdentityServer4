@@ -3,7 +3,7 @@
 
 
 using System.Collections.Generic;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Extensions;
 using IdentityServer4.Validation;
 
@@ -25,7 +25,7 @@ namespace IdentityServer4.Logging.Models
             Raw = request.Raw.ToScrubbedDictionary(OidcConstants.EndSessionRequest.IdTokenHint);
 
             SubjectId = "unknown";
-            
+
             var subjectClaim = request.Subject?.FindFirst(JwtClaimTypes.Subject);
             if (subjectClaim != null)
             {

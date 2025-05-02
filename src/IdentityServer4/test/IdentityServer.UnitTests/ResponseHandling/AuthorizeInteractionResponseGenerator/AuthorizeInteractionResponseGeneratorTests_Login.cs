@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Common;
 using IdentityServer4;
 using IdentityServer4.Configuration;
@@ -72,12 +72,13 @@ namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponse
             var request = new ValidatedAuthorizeRequest
             {
                 ClientId = "foo",
-                Subject = new IdentityServerUser("123") {
+                Subject = new IdentityServerUser("123")
+                {
                     IdentityProvider = IdentityServerConstants.LocalIdentityProvider
                 }.CreatePrincipal(),
-                Client = new Client 
+                Client = new Client
                 {
-                    IdentityProviderRestrictions = new List<string> 
+                    IdentityProviderRestrictions = new List<string>
                     {
                         IdentityServerConstants.LocalIdentityProvider
                     }
@@ -102,7 +103,7 @@ namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponse
                 Client = new Client
                 {
                     EnableLocalLogin = false,
-                    IdentityProviderRestrictions = new List<string> 
+                    IdentityProviderRestrictions = new List<string>
                     {
                         "some_idp"
                     }
@@ -121,7 +122,7 @@ namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponse
             {
                 ClientId = "foo",
                 Client = new Client(),
-                 AuthenticationContextReferenceClasses = new List<string>{
+                AuthenticationContextReferenceClasses = new List<string>{
                     "idp:" + IdentityServerConstants.LocalIdentityProvider
                 },
                 Subject = new IdentityServerUser("123")
@@ -162,7 +163,8 @@ namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponse
             var request = new ValidatedAuthorizeRequest
             {
                 ClientId = "foo",
-                Client = new Client() {
+                Client = new Client()
+                {
                     UserSsoLifetime = 3600 // 1h
                 },
                 Subject = new IdentityServerUser("123")

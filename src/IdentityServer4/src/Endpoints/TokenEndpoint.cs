@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Endpoints.Results;
 using IdentityServer4.Events;
 using IdentityServer4.Extensions;
@@ -38,10 +38,10 @@ namespace IdentityServer4.Endpoints
         /// <param name="events">The events.</param>
         /// <param name="logger">The logger.</param>
         public TokenEndpoint(
-            IClientSecretValidator clientValidator, 
-            ITokenRequestValidator requestValidator, 
-            ITokenResponseGenerator responseGenerator, 
-            IEventService events, 
+            IClientSecretValidator clientValidator,
+            ITokenRequestValidator requestValidator,
+            ITokenResponseGenerator responseGenerator,
+            IEventService events,
             ILogger<TokenEndpoint> logger)
         {
             _clientValidator = clientValidator;

@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Configuration;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
@@ -65,7 +65,7 @@ namespace IdentityServer4.Validation
                 Subject = subject ?? Principal.Anonymous,
                 Raw = parameters ?? throw new ArgumentNullException(nameof(parameters))
             };
-            
+
             // load client_id
             // client_id must always be present on the request
             var loadClientResult = await LoadClientAsync(request);
@@ -272,9 +272,9 @@ namespace IdentityServer4.Validation
                 foreach (var key in jwtRequestValidationResult.Payload.Keys)
                 {
                     if (ignoreKeys.Contains(key)) continue;
-                    
+
                     var value = jwtRequestValidationResult.Payload[key];
-                    
+
                     var qsValue = request.Raw.Get(key);
                     if (qsValue != null)
                     {

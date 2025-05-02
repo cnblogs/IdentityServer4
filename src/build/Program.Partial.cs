@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,17 +32,17 @@ namespace build
                 //Run("dotnet", "clean -c Release -v m --nologo", echoPrefix: Prefix);
             });
 
-            Target(Targets.Build, DependsOn(Targets.CleanBuildOutput), () =>
+            Target(Targets.Build, dependsOn: [Targets.CleanBuildOutput], () =>
             {
                 Run("dotnet", "build -c Release --nologo", echoPrefix: Prefix);
             });
 
-            Target(Targets.SignBinary, DependsOn(Targets.Build), () =>
+            Target(Targets.SignBinary, dependsOn: [Targets.Build], () =>
             {
                 Sign("./src/bin/Release", "*.dll");
             });
 
-            Target(Targets.Test, DependsOn(Targets.Build), () =>
+            Target(Targets.Test, dependsOn: [Targets.Build], () =>
             {
                 Run("dotnet", $"test -c Release --no-build", echoPrefix: Prefix);
             });
@@ -55,19 +55,19 @@ namespace build
                 }
             });
 
-            Target(Targets.Pack, DependsOn(Targets.Build, Targets.CleanPackOutput), () =>
+            Target(Targets.Pack, dependsOn: [Targets.Build, Targets.CleanPackOutput], () =>
             {
                 var project = Directory.GetFiles("./src", "*.csproj", SearchOption.TopDirectoryOnly).OrderBy(_ => _).First();
 
                 Run("dotnet", $"pack {project} -c Release -o \"{Directory.CreateDirectory(packOutput).FullName}\" --no-build --nologo", echoPrefix: Prefix);
             });
 
-            Target(Targets.SignPackage, DependsOn(Targets.Pack), () =>
+            Target(Targets.SignPackage, dependsOn: [Targets.Pack], () =>
             {
                 Sign(packOutput, "*.nupkg");
             });
 
-            Target(Targets.CopyPackOutput, DependsOn(Targets.Pack), () =>
+            Target(Targets.CopyPackOutput, dependsOn: [Targets.Pack], () =>
             {
                 Directory.CreateDirectory(packOutputCopy);
 
@@ -77,13 +77,13 @@ namespace build
                 }
             });
 
-            Target("quick", DependsOn(Targets.CopyPackOutput));
+            Target("quick", dependsOn: [Targets.CopyPackOutput]);
 
-            Target("default", DependsOn(Targets.Test, Targets.CopyPackOutput));
+            Target("default", dependsOn: [Targets.Test, Targets.CopyPackOutput]);
 
-            Target("sign", DependsOn(Targets.SignBinary, Targets.Test, Targets.SignPackage, Targets.CopyPackOutput));
+            Target("sign", dependsOn: [Targets.SignBinary, Targets.Test, Targets.SignPackage, Targets.CopyPackOutput]);
 
-            await RunTargetsAndExitAsync(args, ex => ex is SimpleExec.ExitCodeException || ex.Message.EndsWith(envVarMissing), ()=> Prefix);
+            await RunTargetsAndExitAsync(args, ex => ex is SimpleExec.ExitCodeException || ex.Message.EndsWith(envVarMissing), () => Prefix);
         }
 
         private static void Sign(string path, string searchTerm)

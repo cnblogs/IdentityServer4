@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Linq;
 using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
-using IdentityModel;
+using Duende.IdentityModel;
 using System.Security.Cryptography;
 using System.IdentityModel.Tokens.Jwt;
 using Clients;
@@ -32,7 +32,7 @@ namespace MvcImplicit.Controllers
             return await StartAuthentication();
         }
 
-        public async Task <IActionResult> Logout()
+        public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 

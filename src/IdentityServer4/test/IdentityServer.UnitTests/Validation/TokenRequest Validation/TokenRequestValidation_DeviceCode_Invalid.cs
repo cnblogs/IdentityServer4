@@ -6,7 +6,7 @@ using System;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
 using FluentAssertions;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer.UnitTests.Common;
 using IdentityServer.UnitTests.Validation.Setup;
 using IdentityServer4;
@@ -31,7 +31,7 @@ namespace IdentityServer.UnitTests.Validation.TokenRequest_Validation
             IsOpenId = true,
             Lifetime = 300,
             CreationTime = DateTime.UtcNow,
-            AuthorizedScopes = new[] {"openid", "profile", "resource"}
+            AuthorizedScopes = new[] { "openid", "profile", "resource" }
         };
 
         [Fact]
@@ -51,7 +51,7 @@ namespace IdentityServer.UnitTests.Validation.TokenRequest_Validation
             result.IsError.Should().BeTrue();
             result.Error.Should().Be(OidcConstants.TokenErrors.InvalidRequest);
         }
-        
+
         [Fact]
         [Trait("Category", Category)]
         public async Task DeviceCode_Too_Long()
@@ -59,7 +59,7 @@ namespace IdentityServer.UnitTests.Validation.TokenRequest_Validation
             var client = await _clients.FindClientByIdAsync("device_flow");
 
             var longCode = "x".Repeat(new IdentityServerOptions().InputLengthRestrictions.AuthorizationCode + 1);
-            
+
             var validator = Factory.CreateTokenRequestValidator();
 
             var parameters = new NameValueCollection

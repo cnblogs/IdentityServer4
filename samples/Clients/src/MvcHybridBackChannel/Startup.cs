@@ -1,13 +1,13 @@
-﻿using System;
+using Clients;
+using Duende.IdentityModel;
+using Duende.IdentityModel.Client;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using System.IdentityModel.Tokens.Jwt;
-using IdentityModel;
-using Clients;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using IdentityModel.Client;
+using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
 
 namespace MvcHybrid

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.EntityFramework.Entities;
 using Microsoft.EntityFrameworkCore.InMemory.Infrastructure.Internal;
 using Xunit;
@@ -23,7 +23,7 @@ namespace IdentityServer4.EntityFramework.IntegrationTests.Stores
 
         public DeviceFlowStoreTests(DatabaseProviderFixture<PersistedGrantDbContext> fixture) : base(fixture)
         {
-            foreach (var options in TestDatabaseProviders.SelectMany(x => x.Select(y => (DbContextOptions<PersistedGrantDbContext>) y)).ToList())
+            foreach (var options in TestDatabaseProviders.SelectMany(x => x.Select(y => (DbContextOptions<PersistedGrantDbContext>)y)).ToList())
             {
                 using (var context = new PersistedGrantDbContext(options, StoreOptions))
                     context.Database.EnsureCreated();

@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Validation;
 using System.Threading.Tasks;
 using System;
@@ -41,8 +41,8 @@ namespace IdentityServer4.Test
             {
                 var user = _users.FindByUsername(context.UserName);
                 context.Result = new GrantValidationResult(
-                    user.SubjectId ?? throw new ArgumentException("Subject ID not set", nameof(user.SubjectId)), 
-                    OidcConstants.AuthenticationMethods.Password, _clock.UtcNow.UtcDateTime, 
+                    user.SubjectId ?? throw new ArgumentException("Subject ID not set", nameof(user.SubjectId)),
+                    OidcConstants.AuthenticationMethods.Password, _clock.UtcNow.UtcDateTime,
                     user.Claims);
             }
 

@@ -3,7 +3,7 @@
 
 
 using System.Collections.Generic;
-using IdentityModel;
+using Duende.IdentityModel;
 
 namespace IdentityServer4.Configuration
 {
@@ -15,7 +15,7 @@ namespace IdentityServer4.Configuration
         /// <summary>
         /// 
         /// </summary>
-        public ICollection<string> TokenRequestSensitiveValuesFilter { get; set; } = 
+        public ICollection<string> TokenRequestSensitiveValuesFilter { get; set; } =
             new HashSet<string>
             {
                 OidcConstants.TokenRequest.ClientSecret,
@@ -28,7 +28,7 @@ namespace IdentityServer4.Configuration
         /// <summary>
         /// 
         /// </summary>
-        public ICollection<string> AuthorizeRequestSensitiveValuesFilter { get; set; } = 
+        public ICollection<string> AuthorizeRequestSensitiveValuesFilter { get; set; } =
             new HashSet<string>
             {
                 OidcConstants.AuthorizeRequest.IdTokenHint

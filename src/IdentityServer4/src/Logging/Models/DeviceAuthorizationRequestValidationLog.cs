@@ -3,7 +3,7 @@
 
 
 using System.Collections.Generic;
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Extensions;
 using IdentityServer4.Validation;
 

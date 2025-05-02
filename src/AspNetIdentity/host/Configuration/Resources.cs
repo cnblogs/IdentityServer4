@@ -2,7 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityModel;
+using Duende.IdentityModel;
 using IdentityServer4.Models;
 using System.Collections.Generic;
 using static IdentityServer4.IdentityServerConstants;
@@ -49,7 +49,7 @@ namespace IdentityServerHost.Configuration
             };
 
         // API resources are more formal representation of a resource with processing rules and their scopes (if any)
-        public static readonly IEnumerable<ApiResource> ApiResources = 
+        public static readonly IEnumerable<ApiResource> ApiResources =
             new[]
             {
                 new ApiResource("resource1", "Resource 1")

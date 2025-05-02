@@ -7,7 +7,7 @@ using IdentityServer4.Configuration;
 using IdentityServer4.Models;
 using System.Collections.Specialized;
 using System.Security.Claims;
-using IdentityModel;
+using Duende.IdentityModel;
 using System.Linq;
 using System;
 
@@ -75,7 +75,7 @@ namespace IdentityServer4.Validation
         /// The session identifier.
         /// </value>
         public string SessionId { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the identity server options.
         /// </summary>
