@@ -1,4 +1,4 @@
-# INSTALLING PACKAGES
+# Installing packages
 
 ```shell
 dotnet add package Cnblogs.IdentityServer4
